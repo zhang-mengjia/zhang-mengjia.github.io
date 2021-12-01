@@ -3,18 +3,19 @@
 
 ~~~
 {}{img_left}{photos/wy.png}{alt text}{185px}{239px}
-[https://ariusewy.github.io Ya Wang], Final year Undergraduate student in Nanjing University \n 
-Senior Research Engineer at [https://www.us1.dgene.com/ DGene] \n
-Baton Rouge, Louisiana, United States \n
+[https://ariusewy.github.io Ya Wang], Final year Undergraduate student in [https://www.nju.edu.cn/ Nanjing University]\n 
+Jiangsu, China \n
+Research Intern in at [https://hkust.edu.hk/ The Hong Kong University of Science and Technology] \n
+Hong Kong SAR,China\n
 \n
-Email: astrostell@gmail.com \n
-\[[https://scholar.google.com/citations?user=CIfBuzcAAAAJ&hl=en Google Scholar]\]\[[CV.pdf Curriculem Vitae]\] \n
+Email: yawang@nju.edu.cn \n
+\[[CV_Ya Wang_1129.pdf Curriculem Vitae]\] \[[https://github.com/ariusewy github]\] \[[https://www.kaggle.com/danaevan kaggle]\]\n
 ~~~
 
 
 
 
-at Baton Rouge, Louisiana, USA. (March 19, 2021)
+at HKUST, Hong Kong SAR, China. (Dec 1, 2021)
 #at Grand Isle State Park, Louisiana, USA. (Oct 6, 2018)
 
 #== News
@@ -26,21 +27,16 @@ at Baton Rouge, Louisiana, USA. (March 19, 2021)
 #- \[08-18-2018\] "Demographic inference via knowledge transfer in cross-domain recommender systems" is accepted by ICDM'18!
 
 == About me
-I'm currently working at [https://www.us1.dgene.com/ DGene] as a senior research engineer. I got my Ph.D. in Computer Science at Louisiana State University, under the guidance of Dr. [http://csc.lsu.edu/~msun/ Mingxuan Sun]. My research focuses on developing computationally efficient machine learning as well as deep learning models and algorithms, with applications in recommender systems, time-series analysis, computer vision, computer graphics, and natural language processing.
+I'm currently a final year undergraduate student in Nanjing University, major in Electronic information science and technology, member of Outstanding Engineer Class. I'm now also a Research Intern in [https://eeweiz.home.ece.ust.hk/ Reconfigurable computing system laboratory (RCSL)] of the department of electronic & computer engineering in The Hong Kong University of Science and Technology. 
 
 == Education 
-- Ph.D. in Computer Science, Louisiana State University, Aug. 2016 - Aug. 2020
-- M.S. in Solid Mechanics, University of Science and Technology of China, Sept. 2013 - Jun. 2016
-- B.S. in Theoretical and Applied Mechanics, University of Science and Technology of China, Sept. 2009 - Jun. 2013
+- B.S. in Electronic information science and technology, Nanjing University, Sept. 2018 - Jun. 2022
+- Visiting Student in the Hong Kong University of Science and Technolog, July. 2021 - Dec. 2021
+- MITxPro Program student, Massachusetts Institute of Technology, Jan. 2021 - Mar. 2021
 
 == Research Interests 
-- Statistical Machine Learning, Deep Learning, Point Process, Optimization, Fairness
-- Data Mining, Information Retrieval, Recommender System 
-- Computer Vision, Computer Graphics, Natural Language Processing
+- Hardware based accelerating for machine learning
+- Reconfigurable system and FPGA-based design, High-performance, low-power multicore systems 
+- Computer Vision, machine learning
 
-== Visitors
-~~~
-{}{raw}
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=n&d=weAawplBogRZm4707J2DPkv1Pn3WYzslKBDineUl-bw'></script>
-~~~
 

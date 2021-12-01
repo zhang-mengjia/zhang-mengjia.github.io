@@ -13,7 +13,7 @@
  - *High Speed Chip Interconnection System and Design of Optimized Coding *\n 
  /Research Assistant, Advisor: Prof. Yuan Du, Nanjing University/ \n 
  -- In this project, I constructed   an FPGA-based channel testing system using GTX transceivers for high-speed differential signals, analyzed and verified high-speed signal integrity with different encoding methods and various channels made of PCB using IBERT tools to explore and optimize the encoding method and channel for high-speed signal                transmission based on the assumption of low BER and jitter.
- - *NEMU (NJU Emulator) - A Simple but Complete Full-System Emulator*
+ - *NEMU (NJU Emulator) - A Simple but Complete Full-System Emulator*\n 
  /Final Project of ICS,Advisor: Prof. Liang Wang, Nanjing University/
  -- I Built a complete system emulator that supports X86 architecture using C language and implemented PC console games like the Chinese Paladin series games and implemented main features including a monitor with a debugger, a CPU core supporting instructions based on X86 architecture and a memory module with the emulation of cache, protection modes and paging. Besides, I also emulated several I/O devices, interrupt, and exception.
  - *Visual Aid System for the Blind Based on Deep Learning *\n 

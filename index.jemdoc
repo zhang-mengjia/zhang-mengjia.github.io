@@ -3,19 +3,17 @@
 
 ~~~
 {}{img_left}{photos/wy.png}{alt text}{185px}{239px}
-[https://ariusewy.github.io Ya Wang], Final year Undergraduate student in [https://www.nju.edu.cn/ Nanjing University]\n 
-Jiangsu, China \n
-Research Intern in at [https://hkust.edu.hk/ The Hong Kong University of Science and Technology] \n
-Hong Kong SAR,China\n
-\n
-Email: yawang@nju.edu.cn \n
-\[[CV.pdf Curriculem Vitae]\] \[[https://github.com/ariusewy github]\] \[[https://www.kaggle.com/danaevan kaggle]\]\n
+[https://ariusewy.github.io Ya Wang] \n
+First Year PhD Student in [https://hkust.edu.hk/ The Hong Kong University of Science and Technology]\n 
+Hong Kong SAR,China \n
+Email: ywangmu@connect.ust.hk \n
+\[[CV_Ya Wang_2023-0412.pdf Curriculem Vitae]\] \[[https://github.com/ariusewy github]\] \[[https://www.kaggle.com/danaevan kaggle]\]\n
 ~~~
 
 
 
 
-at HKUST, Hong Kong SAR, China. (Dec 1, 2021)
+at HKUST, Hong Kong SAR, China. 
 #at Grand Isle State Park, Louisiana, USA. (Oct 6, 2018)
 
 #== News
@@ -27,16 +25,28 @@ at HKUST, Hong Kong SAR, China. (Dec 1, 2021)
 #- \[08-18-2018\] "Demographic inference via knowledge transfer in cross-domain recommender systems" is accepted by ICDM'18!
 
 == About me
-I'm currently a final year undergraduate student in Nanjing University, major in *Electronic information science and technology*, and I'm also a member of *Outstanding Engineer Class*. Besides, I'm now a Research Intern in [https://eeweiz.home.ece.ust.hk/ Reconfigurable computing system laboratory (RCSL)] of the department of electronic & computer engineering in The Hong Kong University of Science and Technology. 
-
-== Education 
-- B.S. in Electronic information science and technology, Nanjing University, Sept. 2018 - Jun. 2022
-- Visiting Student in the Hong Kong University of Science and Technolog, July. 2021 - Dec. 2021
-- MITxPro Program student, Massachusetts Institute of Technology, Jan. 2021 - Mar. 2021
+I'm currently a first year PhD student in [https://eeweiz.home.ece.ust.hk/ Reconfigurable computing system laboratory (RCSL)] led by Prof. Wei ZHANG at the Department of Electronic & Computer Engineering in HKUST. Previously, I obtained my Bachelor’s Degree 
+at the Department of Electronic Science and Engineering, Nanjing University, where I was advised by Prof. Zhongfeng WANG in [https://icais-lab.github.io/index.html Lab of Integrated Circuits and Intelligent System (ICAIS)].
 
 == Research Interests 
-- Hardware based accelerating for machine learning
-- Reconfigurable system and FPGA-based design, High-performance, low-power multicore systems 
-- Computer Vision, machine learning
+- CPU Architecture Design and Modeling
+- Hardware and Software co-design AI Accelerator
+- Design Space Exploration
+
+== Education 
+- P.h.D in Electronic & Computer Engineering,[https://hkust.edu.hk/ The Hong Kong University of Science and Technology], Sept. 2022 - Now
+- B.S. in Electronic information science and technology, Nanjing University, Sept. 2018 - Jun. 2022
+#- Visiting Student in the Hong Kong University of Science and Technolog, July. 2021 - Dec. 2021
+#- MITxPro Program student, Massachusetts Institute of Technology, Jan. 2021 - Mar. 2021
+
+== Experiences
+- Alibaba DAMO Academy, Beijing, P.R. China, Jun. 2022 - present
+Research Intern, Computing Technology Lab
+Topic: RISC-V CPU Performance Modeling
+- the Hong Kong University of Science and Technolog, Hong Kong SAR, China, July. 2021 - Dec. 2021
+Research Intern, Reconfigurable computing system laboratory (RCSL)
+Topic: Automatic Generation Framework of Large Verification Samples for EDA tools
+
+
 
 

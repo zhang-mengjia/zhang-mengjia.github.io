@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
     
-    <!-- 
-       【图标说明】
-       浏览器标签页图标 (Favicon)。
-       如果您希望这里也是严格的圆形，请使用一张“背景透明、内容为圆形”的 PNG 图片。
-    -->
+    <!-- 浏览器标签页图标 (保持圆形逻辑，若原图是方图，这里只负责引入) -->
     <link rel="icon" href="./files/icon.png">
 
     <style>
@@ -18,7 +14,6 @@
            ========================================= */
 
         :root {
-            /* 经典 Windows 配色 */
             --win-gray: #c0c0c0;
             --win-light: #dfdfdf;
             --win-dark: #808080;
@@ -32,7 +27,6 @@
             --pdf-red: #cc0000;
         }
 
-        /* 暗色主题变量 */
         [data-theme="dark"] {
             --win-gray: #4a4a4a;
             --win-light: #666;
@@ -59,22 +53,20 @@
             flex-direction: column;
             overflow: hidden; 
             color: var(--text-color);
+            user-select: none; /* 默认不选中文本，防止拖拽时大片蓝底，特定区域开启 */
+        }
+
+        /* 允许内容区域选中文本，但在JS中我们会在拖拽时临时禁用 */
+        .content-pane, .sidebar, .card-content {
+            user-select: text; 
         }
 
         /* === 顶部标题栏 === */
         .title-bar {
-            /* 低饱和度彩虹色渐变 */
             background: linear-gradient(to right, 
-                #ffadad, /* 浅红 */
-                #ffd6a5, /* 浅橙 */
-                #fdffb6, /* 浅黄 */
-                #caffbf, /* 浅绿 */
-                #9bf6ff, /* 浅青 */
-                #a0c4ff, /* 浅蓝 */
-                #bdb2ff  /* 浅紫 */
+                #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff
             );
-            
-            color: #000; /* 配合浅色背景，使用深色文字 */
+            color: #000;
             padding: 4px 8px;
             font-weight: bold;
             display: flex;
@@ -128,6 +120,26 @@
             padding: 10px;
             gap: 12px;
             overflow: hidden; 
+            position: relative; /* 为拖拽元素提供参照 */
+        }
+
+        /* === 可拖拽的板块通用样式 (Sidebar & Content) === */
+        .draggable-panel {
+            /* 关键：允许相对定位以便 transform 生效 */
+            position: relative; 
+            z-index: 1;
+            /* 默认鼠标样式：伸开的手 */
+            cursor: grab; 
+            transition: box-shadow 0.2s, border-color 0.2s; /* 去掉 transform transition 以免拖拽延迟 */
+        }
+
+        /* 当被按住/拖动时的样式 */
+        .draggable-panel.is-dragging {
+            /* 鼠标样式：握住的手 */
+            cursor: grabbing !important;
+            z-index: 100; /* 拖拽时层级最高 */
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.3); /* 拖起时的阴影 */
+            opacity: 0.95;
         }
 
         /* === 左侧边栏 (Sidebar) === */
@@ -183,7 +195,7 @@
             border-color: var(--white) var(--win-dark) var(--win-dark) var(--white);
             padding: 10px;
             transition: all 0.2s ease;
-            cursor: default;
+            cursor: default; /* 卡片内部恢复默认鼠标，避免误以为卡片本身可独立拖出布局 */
         }
         .contact-card:hover {
             border-color: var(--white) var(--black) var(--black) var(--white);
@@ -228,7 +240,6 @@
             outline: none;
             flex-shrink: 0; 
         }
-
         .retro-btn:active {
             border-top: 2px solid #404040;
             border-left: 2px solid #404040;
@@ -246,7 +257,6 @@
             border-bottom-color: #222;
         }
 
-        /* 统一的行样式 */
         .info-row {
             display: flex;
             align-items: center;
@@ -261,10 +271,10 @@
             text-decoration: underline;
             font-size: 12px;
             word-break: break-all; 
+            cursor: pointer; /* 确保链接是点击手势 */
         }
         [data-theme="dark"] .email-link { color: #8ab4f8; }
 
-        /* 导航按钮 */
         .nav-btn {
             display: block;
             text-decoration: none;
@@ -285,7 +295,6 @@
             transform: translateY(1px);
         }
         
-        /* 内容区样式 */
         h2 {
             font-size: 18px; margin: 0 0 15px 0; color: var(--blue);
             border-bottom: 2px solid var(--win-gray); padding-bottom: 5px;
@@ -296,32 +305,27 @@
         .info-table td { padding: 8px 0; vertical-align: top; }
         .info-label { font-weight: bold; width: 110px; opacity: 0.9; min-width: 90px; }
 
-        /* 卡片悬停效果：加深颜色 + 上浮 */
         .paper-card {
             background: var(--paper-bg);
             border: 1px solid var(--win-dark);
             padding: 15px;
             margin-bottom: 15px;
             box-shadow: 3px 3px 0 var(--win-light);
-            transition: all 0.2s ease;
+            transition: background-color 0.2s, transform 0.2s; /* 修改 transition 避免冲突 */
             cursor: default;
         }
-        
         .paper-card:hover {
             transform: translateY(-3px);
-            background-color: #f7f7f7;   /* Light模式下变灰一点点 */
+            background-color: #f7f7f7; 
             border-color: var(--blue); 
             box-shadow: 4px 4px 2px rgba(0,0,0,0.1);
         }
-
         [data-theme="dark"] .paper-card { border-color: #555; box-shadow: 3px 3px 0 #222; }
-        
         [data-theme="dark"] .paper-card:hover {
-            background-color: #404040; /* Dark模式下稍微变亮 */
+            background-color: #404040;
             border-color: #8ab4f8;
         }
 
-        /* News 样式 */
         .news-list { list-style-type: none; padding: 0; margin: 0; }
         .news-item { margin-bottom: 12px; padding-left: 20px; position: relative; font-size: 14px; line-height: 1.5; }
         .news-item::before { content: "■"; color: var(--blue); font-size: 10px; position: absolute; left: 0; top: 5px; }
@@ -339,6 +343,7 @@
             margin-left: 10px;
             display: inline-block;
             white-space: nowrap;
+            cursor: pointer;
         }
         .pdf-link:hover { background-color: var(--pdf-red); color: white; }
 
@@ -366,9 +371,6 @@
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        /* =========================================
-           Responsive Logic (适配手机/平板)
-           ========================================= */
         @media screen and (max-width: 850px) {
             body { height: auto; min-height: 100vh; overflow-y: auto; }
             .main-container { flex-direction: column; height: auto; overflow: visible; padding: 6px; gap: 15px; }
@@ -377,6 +379,8 @@
             .title-bar { position: sticky; top: 0; }
             .info-table td { display: block; width: 100%; }
             .info-label { margin-bottom: 2px; color: var(--blue); }
+            /* 移动端禁用自定义拖拽，体验更好 */
+            .draggable-panel { cursor: default; }
         }
     </style>
 </head>
@@ -385,7 +389,6 @@
     <!-- 1. 顶部标题栏 -->
     <div class="title-bar">
         <div class="title-text">
-            <!-- 【修改点】border-radius: 50% 确保图标显示为圆形 -->
             <img src="./files/icon.png" 
                  alt="Logo"
                  style="width:18px; height:18px; background:white; border:1px solid gray; border-radius: 50%;">
@@ -404,14 +407,12 @@
     <!-- 3. 主体区域 -->
     <div class="main-container">
         
-        <!-- 左侧栏 (在手机端显示在顶部) -->
-        <aside class="sidebar">
+        <!-- 
+          【修改点】：左侧栏添加 class="sidebar draggable-panel" 
+          "draggable-panel" 启用了我们下面的 JS 拖拽逻辑
+        -->
+        <aside class="sidebar draggable-panel" id="sidebar-panel">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
-                <!-- 
-                   【头像说明】
-                   这里没有设置 border-radius，因此头像保持长方形 (5:7 比例)。
-                   大小设置为 195px * 273px。
-                -->
                 <img src="./files/avatar.jpg" 
                      alt="Avatar" 
                      style="width:195px; height:273px; object-fit: cover; border:2px solid gray; box-shadow: 2px 2px 0 var(--text-color); background:white; margin-bottom:10px;">
@@ -429,7 +430,6 @@
                         <span>💬 WeChat Official Account</span>
                     </div>
                     <div class="card-content">
-                        <!-- info-row 确保左右对齐 -->
                         <div class="info-row">
                             <span style="font-size: 16px; font-weight: bold;">张初的公众号</span>
                             <button class="retro-btn" onclick="copyToClipboard('张初的公众号')">
@@ -475,7 +475,6 @@
                 </div>
             </div>
             
-            <!-- 导航菜单 -->
             <div class="panel-outset" style="margin-top: 15px;">
                  <a href="#about" class="nav-btn">About Me</a>
                  <a href="#research" class="nav-btn">Research Interests</a>
@@ -489,8 +488,10 @@
             </div>
         </aside>
 
-        <!-- 右侧主内容区 -->
-        <main class="content-pane">
+        <!-- 
+          【修改点】：右侧主内容区添加 class="content-pane draggable-panel"
+        -->
+        <main class="content-pane draggable-panel" id="main-panel">
             
             <section id="about" style="margin-bottom:30px;">
                 <h2>About Me</h2>
@@ -623,7 +624,6 @@
 
     <!-- 4. 底部状态栏 -->
     <div class="status-bar">
-        <!-- 随机显示句子 -->
         <span id="status-text">Ready.</span>
         <span id="clock">00:00 PM</span>
     </div>
@@ -632,12 +632,87 @@
     <div id="toast">Copied to clipboard!</div>
 
     <script>
-        // === 1. Help 点击提示 ===
+        // === 1. 拖拽逻辑 (Drag Logic) ===
+        // 允许拖动的元素类名：.draggable-panel (在HTML中已经添加到 sidebar 和 content-pane)
+        const draggables = document.querySelectorAll('.draggable-panel');
+        let currentDrag = null;
+        let startX = 0, startY = 0;
+        let initialTransX = 0, initialTransY = 0;
+
+        draggables.forEach(el => {
+            // 初始化 transform，方便后续计算
+            el.style.transform = 'translate(0px, 0px)';
+            
+            el.addEventListener('mousedown', function(e) {
+                // 如果是移动端，通常不启用这种拖拽
+                if(window.innerWidth <= 850) return;
+
+                // 检查是否点击了不需要拖拽的元素 (链接, 按钮, 输入框)
+                // 这样可以保证点击复制按钮或打开链接依然有效
+                if (e.target.tagName === 'A' || 
+                    e.target.tagName === 'BUTTON' || 
+                    e.target.closest('a') || 
+                    e.target.closest('button') ||
+                    e.target.tagName === 'INPUT') {
+                    return;
+                }
+
+                // 开始拖拽
+                currentDrag = el;
+                
+                // 获取鼠标初始位置
+                startX = e.clientX;
+                startY = e.clientY;
+
+                // 获取当前已有的 transform 值
+                const transform = window.getComputedStyle(el).transform;
+                if (transform !== 'none') {
+                    // matrix(1, 0, 0, 1, x, y)
+                    const values = transform.split('(')[1].split(')')[0].split(',');
+                    initialTransX = parseFloat(values[4]);
+                    initialTransY = parseFloat(values[5]);
+                } else {
+                    initialTransX = 0;
+                    initialTransY = 0;
+                }
+
+                // 添加拖拽样式 (光标变握拳)
+                el.classList.add('is-dragging');
+                
+                // 防止拖拽过程中选中文本，影响体验
+                document.body.style.userSelect = 'none';
+            });
+        });
+
+        // 监听全局移动
+        document.addEventListener('mousemove', function(e) {
+            if (!currentDrag) return;
+
+            e.preventDefault(); // 防止默认事件 (如选中文本)
+
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+            // 应用新的位置
+            currentDrag.style.transform = `translate(${initialTransX + dx}px, ${initialTransY + dy}px)`;
+        });
+
+        // 监听全局松开
+        document.addEventListener('mouseup', function(e) {
+            if (currentDrag) {
+                currentDrag.classList.remove('is-dragging');
+                currentDrag = null;
+                // 恢复文本选择
+                document.body.style.userSelect = ''; 
+            }
+        });
+
+        // === 2. Help 点击提示 ===
         function showHelp() {
-            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Toggle Theme to switch Light/Dark mode.\n4. Press Ctrl+P to save as PDF.");
+            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. DRAG panels by holding left mouse button on empty areas!\n4. Toggle Theme to switch Light/Dark mode.");
         }
 
-        // === 2. 主题切换 ===
+        // === 3. 主题切换 ===
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if(currentTheme === 'dark') {
@@ -647,7 +722,7 @@
             }
         }
 
-        // === 3. 复制功能 ===
+        // === 4. 复制功能 ===
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
                 var toast = document.getElementById("toast");
@@ -669,7 +744,7 @@
             });
         }
 
-        // === 4. 打字机特效 ===
+        // === 5. 打字机特效 ===
         const part1 = "I aims to understand the neural basis of associative learning and decision-making, essential cognitive processes that endow us to construct a relational structure of the world around us and use such knowledge to solve daily problems.";
         const part2 = "I design complex and precise Pavlovian and operant tasks for rats or mice to learn and perform, and use techniques including in vivo electrophysiology, one- or two-photon imaging, widefield imaging, optogenetics, chemogenetics, neuropharmacology, statistical analysis, machine learning, and computational modeling, to figure out how neural population activities, especially in the prefrontal cortex and hippocampus, support computations necessary for associative learning and behavior.";
         
@@ -693,19 +768,17 @@
             }
         }
 
-        // === 5. 时钟 ===
+        // === 6. 时钟 & 随机金句 ===
         function updateClock() {
             const d = new Date();
             document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
 
-        // === 6. 初始化 & 随机金句 ===
         window.onload = function() {
             startTypewriter();
             updateClock();
             setInterval(updateClock, 1000);
 
-            // 随机显示状态栏文字
             const quotes = [
                 "慎重如始，则无败事。",
                 "都是时代里的麦杆，风一吹过就倒伏在地上。"

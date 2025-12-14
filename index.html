@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
     
-    <!-- 【修改点 1】在这里替换浏览器标签页的图标 (favicon) -->
-    <!-- 请将 href 换成你自己的图标文件路径，如 ./files/icon.png -->
-    <link rel="icon" href="./files/icon.png">
+    <!-- 浏览器标签页图标 -->
+    <link rel="icon" href="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50">
 
     <style>
         /* =========================================
@@ -60,18 +59,11 @@
 
         /* === 顶部标题栏 === */
         .title-bar {
-            /* 【修改点 2】改为彩虹色渐变背景 */
+            /* 降低饱和度的彩虹色渐变 */
             background: linear-gradient(to right, 
-                #ff0000, /* 红 */
-                #ffa500, /* 橙 */
-                #ffff00, /* 黄 */
-                #008000, /* 绿 */
-                #0000ff, /* 蓝 */
-                #4b0082, /* 靛 */
-                #ee82ee  /* 紫 */
+                #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff
             );
-            
-            color: white;
+            color: #000; 
             padding: 4px 8px;
             font-weight: bold;
             display: flex;
@@ -81,7 +73,6 @@
             flex-shrink: 0; 
             height: 32px;
             z-index: 10;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 增加文字阴影以防背景太亮看不清 */
         }
 
         .title-text {
@@ -93,6 +84,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: #000080; 
         }
 
         /* === 菜单栏 === */
@@ -243,11 +235,11 @@
             border-bottom-color: #222;
         }
 
-        /* 统一的行样式：用于 WeChat 和 Email */
+        /* 统一的行样式 */
         .info-row {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* 两端对齐 */
+            justify-content: space-between; 
             gap: 5px;
             margin-bottom: 6px;
         }
@@ -293,15 +285,30 @@
         .info-table td { padding: 8px 0; vertical-align: top; }
         .info-label { font-weight: bold; width: 110px; opacity: 0.9; min-width: 90px; }
 
+        /* 卡片悬停效果 */
         .paper-card {
             background: var(--paper-bg);
             border: 1px solid var(--win-dark);
             padding: 15px;
             margin-bottom: 15px;
             box-shadow: 3px 3px 0 var(--win-light);
-            transition: transform 0.2s;
+            transition: all 0.2s ease;
+            cursor: default;
         }
+        
+        .paper-card:hover {
+            transform: translateY(-3px);
+            background-color: #f7f7f7;
+            border-color: var(--blue); 
+            box-shadow: 4px 4px 2px rgba(0,0,0,0.1);
+        }
+
         [data-theme="dark"] .paper-card { border-color: #555; box-shadow: 3px 3px 0 #222; }
+        
+        [data-theme="dark"] .paper-card:hover {
+            background-color: #404040;
+            border-color: #8ab4f8;
+        }
 
         /* News 样式 */
         .news-list { list-style-type: none; padding: 0; margin: 0; }
@@ -322,6 +329,7 @@
             display: inline-block;
             white-space: nowrap;
         }
+        .pdf-link:hover { background-color: var(--pdf-red); color: white; }
 
         .status-bar {
             background: var(--win-gray);
@@ -366,11 +374,10 @@
     <!-- 1. 顶部标题栏 -->
     <div class="title-bar">
         <div class="title-text">
-            <!-- 【修改点 3】在此更换标题栏左上角的图标图片 -->
-            <!-- 将 src 修改为您的本地图片路径，例如 src="./files/logo.png" -->
+            <!-- 【修改 1】将这里的 border-radius 设为 50%，实现圆形图标 -->
             <img src="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50" 
                  alt="Logo"
-                 style="width:18px; height:18px; background:white; border:1px solid gray;">
+                 style="width:18px; height:18px; background:white; border:1px solid gray; border-radius: 50%;">
                  
             Mengjia Zhang - Academic Profile
         </div>
@@ -380,7 +387,7 @@
     <div class="menu-bar">
         <div class="menu-item" onclick="window.print()">File (Print to PDF)</div>
         <div class="menu-item" onclick="toggleTheme()">View (Switch Theme)</div>
-        <div class="menu-item" onclick="alert('System Normal.')">Help</div>
+        <div class="menu-item" onclick="showHelp()">Help</div>
     </div>
 
     <!-- 3. 主体区域 -->
@@ -390,6 +397,7 @@
         <aside class="sidebar">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
                 <!-- 请替换下面的 avatar.jpg 为实际照片 -->
+                <!-- 如果希望这个大照片也是圆形的，请在 style 里添加 border-radius: 50%; -->
                 <img src="./files/avatar.jpg" 
                      alt="Avatar" 
                      style="width:195px; height:273px; object-fit: cover; border:2px solid gray; box-shadow: 2px 2px 0 var(--text-color); background:white; margin-bottom:10px;">
@@ -601,7 +609,7 @@
 
     <!-- 4. 底部状态栏 -->
     <div class="status-bar">
-        <span>Ready.</span>
+        <span id="status-text">Ready.</span>
         <span id="clock">00:00 PM</span>
     </div>
 
@@ -609,7 +617,12 @@
     <div id="toast">Copied to clipboard!</div>
 
     <script>
-        // === 1. 主题切换 ===
+        // === 1. Help 点击提示 ===
+        function showHelp() {
+            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Toggle Theme to switch Light/Dark mode.\n4. Press Ctrl+P to save as PDF.");
+        }
+
+        // === 2. 主题切换 ===
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if(currentTheme === 'dark') {
@@ -619,7 +632,7 @@
             }
         }
 
-        // === 2. 复制功能 ===
+        // === 3. 复制功能 ===
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
                 var toast = document.getElementById("toast");
@@ -641,7 +654,7 @@
             });
         }
 
-        // === 3. 打字机特效 ===
+        // === 4. 打字机特效 ===
         const part1 = "I aims to understand the neural basis of associative learning and decision-making, essential cognitive processes that endow us to construct a relational structure of the world around us and use such knowledge to solve daily problems.";
         const part2 = "I design complex and precise Pavlovian and operant tasks for rats or mice to learn and perform, and use techniques including in vivo electrophysiology, one- or two-photon imaging, widefield imaging, optogenetics, chemogenetics, neuropharmacology, statistical analysis, machine learning, and computational modeling, to figure out how neural population activities, especially in the prefrontal cortex and hippocampus, support computations necessary for associative learning and behavior.";
         
@@ -665,17 +678,25 @@
             }
         }
 
-        // === 4. 时钟 ===
+        // === 5. 时钟 ===
         function updateClock() {
             const d = new Date();
             document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
 
-        // === 5. 初始化 ===
+        // === 6. 初始化 & 随机金句 ===
         window.onload = function() {
             startTypewriter();
             updateClock();
             setInterval(updateClock, 1000);
+
+            // 随机显示状态栏文字
+            const quotes = [
+                "慎重如始，则无败事。",
+                "都是时代里的麦杆，风一吹过就倒伏在地上。"
+            ];
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('status-text').innerText = quotes[randomIndex];
         };
     </script>
 </body>

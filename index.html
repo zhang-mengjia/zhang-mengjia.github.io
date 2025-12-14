@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
     
-    <!-- 浏览器标签页图标 (保持圆形逻辑，若原图是方图，这里只负责引入) -->
+    <!-- 浏览器标签页图标 -->
     <link rel="icon" href="./files/icon.png">
 
     <style>
@@ -53,12 +53,6 @@
             flex-direction: column;
             overflow: hidden; 
             color: var(--text-color);
-            user-select: none; /* 默认不选中文本，防止拖拽时大片蓝底，特定区域开启 */
-        }
-
-        /* 允许内容区域选中文本，但在JS中我们会在拖拽时临时禁用 */
-        .content-pane, .sidebar, .card-content {
-            user-select: text; 
         }
 
         /* === 顶部标题栏 === */
@@ -120,26 +114,26 @@
             padding: 10px;
             gap: 12px;
             overflow: hidden; 
-            position: relative; /* 为拖拽元素提供参照 */
         }
 
-        /* === 可拖拽的板块通用样式 (Sidebar & Content) === */
-        .draggable-panel {
-            /* 关键：允许相对定位以便 transform 生效 */
-            position: relative; 
-            z-index: 1;
-            /* 默认鼠标样式：伸开的手 */
+        /* === 滚动区域通用样式 (Sidebar & Content) === */
+        /* 添加 scrollable 类来标记这两个区域可以被“抓取滚动” */
+        .sidebar, .content-pane {
+            overflow-y: auto; 
+            scrollbar-width: thin;
+            scrollbar-color: var(--win-dark) var(--win-light);
+            
+            /* 关键样式：默认显示张开的手 */
             cursor: grab; 
-            transition: box-shadow 0.2s, border-color 0.2s; /* 去掉 transform transition 以免拖拽延迟 */
+            
+            /* 使得滚动更加平滑 */
+            scroll-behavior: auto; /* JS拖动时设为auto以实时响应，CSS锚点跳转时可以是smooth */
         }
 
-        /* 当被按住/拖动时的样式 */
-        .draggable-panel.is-dragging {
-            /* 鼠标样式：握住的手 */
-            cursor: grabbing !important;
-            z-index: 100; /* 拖拽时层级最高 */
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.3); /* 拖起时的阴影 */
-            opacity: 0.95;
+        /* 当正在拖动时的样式：握住的手 */
+        .sidebar.is-dragging, .content-pane.is-dragging {
+            cursor: grabbing;
+            user-select: none; /* 拖动时禁止选中文本，防止变蓝 */
         }
 
         /* === 左侧边栏 (Sidebar) === */
@@ -149,10 +143,7 @@
             flex-direction: column;
             gap: 12px;
             flex-shrink: 0;
-            overflow-y: auto;
             padding-right: 2px; 
-            scrollbar-width: thin;
-            scrollbar-color: var(--win-dark) var(--win-light);
         }
 
         /* === 右侧内容区 (Content) === */
@@ -162,8 +153,6 @@
             border: 2px solid;
             border-color: var(--win-dark) var(--white) var(--white) var(--win-dark);
             padding: 30px;
-            overflow-y: auto; 
-            scroll-behavior: smooth;
             min-width: 0; 
         }
 
@@ -195,7 +184,7 @@
             border-color: var(--white) var(--win-dark) var(--win-dark) var(--white);
             padding: 10px;
             transition: all 0.2s ease;
-            cursor: default; /* 卡片内部恢复默认鼠标，避免误以为卡片本身可独立拖出布局 */
+            cursor: default; /* 卡片内恢复默认箭头，避免误导 */
         }
         .contact-card:hover {
             border-color: var(--white) var(--black) var(--black) var(--white);
@@ -271,7 +260,7 @@
             text-decoration: underline;
             font-size: 12px;
             word-break: break-all; 
-            cursor: pointer; /* 确保链接是点击手势 */
+            cursor: pointer;
         }
         [data-theme="dark"] .email-link { color: #8ab4f8; }
 
@@ -311,8 +300,8 @@
             padding: 15px;
             margin-bottom: 15px;
             box-shadow: 3px 3px 0 var(--win-light);
-            transition: background-color 0.2s, transform 0.2s; /* 修改 transition 避免冲突 */
-            cursor: default;
+            transition: background-color 0.2s, transform 0.2s;
+            cursor: default; /* 卡片恢复默认鼠标 */
         }
         .paper-card:hover {
             transform: translateY(-3px);
@@ -379,8 +368,6 @@
             .title-bar { position: sticky; top: 0; }
             .info-table td { display: block; width: 100%; }
             .info-label { margin-bottom: 2px; color: var(--blue); }
-            /* 移动端禁用自定义拖拽，体验更好 */
-            .draggable-panel { cursor: default; }
         }
     </style>
 </head>
@@ -407,11 +394,8 @@
     <!-- 3. 主体区域 -->
     <div class="main-container">
         
-        <!-- 
-          【修改点】：左侧栏添加 class="sidebar draggable-panel" 
-          "draggable-panel" 启用了我们下面的 JS 拖拽逻辑
-        -->
-        <aside class="sidebar draggable-panel" id="sidebar-panel">
+        <!-- 左侧栏：添加 id 用于 JS 选择 -->
+        <aside class="sidebar" id="sidebar-panel">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
                 <img src="./files/avatar.jpg" 
                      alt="Avatar" 
@@ -488,10 +472,8 @@
             </div>
         </aside>
 
-        <!-- 
-          【修改点】：右侧主内容区添加 class="content-pane draggable-panel"
-        -->
-        <main class="content-pane draggable-panel" id="main-panel">
+        <!-- 右侧主内容区：添加 id 用于 JS 选择 -->
+        <main class="content-pane" id="main-panel">
             
             <section id="about" style="margin-bottom:30px;">
                 <h2>About Me</h2>
@@ -632,84 +614,55 @@
     <div id="toast">Copied to clipboard!</div>
 
     <script>
-        // === 1. 拖拽逻辑 (Drag Logic) ===
-        // 允许拖动的元素类名：.draggable-panel (在HTML中已经添加到 sidebar 和 content-pane)
-        const draggables = document.querySelectorAll('.draggable-panel');
-        let currentDrag = null;
-        let startX = 0, startY = 0;
-        let initialTransX = 0, initialTransY = 0;
+        // === 1. 抓取滚动逻辑 (Grab-to-Scroll Logic) ===
+        // 选择这两个需要滚动的容器
+        const scrollContainers = document.querySelectorAll('.sidebar, .content-pane');
 
-        draggables.forEach(el => {
-            // 初始化 transform，方便后续计算
-            el.style.transform = 'translate(0px, 0px)';
-            
-            el.addEventListener('mousedown', function(e) {
-                // 如果是移动端，通常不启用这种拖拽
-                if(window.innerWidth <= 850) return;
+        scrollContainers.forEach(container => {
+            let isDown = false;
+            let startY;
+            let scrollTop;
 
-                // 检查是否点击了不需要拖拽的元素 (链接, 按钮, 输入框)
-                // 这样可以保证点击复制按钮或打开链接依然有效
-                if (e.target.tagName === 'A' || 
-                    e.target.tagName === 'BUTTON' || 
-                    e.target.closest('a') || 
-                    e.target.closest('button') ||
-                    e.target.tagName === 'INPUT') {
-                    return;
-                }
+            container.addEventListener('mousedown', (e) => {
+                // 如果点在了链接、按钮或输入框上，则不触发拖动
+                if (e.target.closest('a, button, input, .retro-btn')) return;
 
-                // 开始拖拽
-                currentDrag = el;
+                isDown = true;
+                container.classList.add('is-dragging'); // 改变鼠标样式为 grabbing
                 
-                // 获取鼠标初始位置
-                startX = e.clientX;
-                startY = e.clientY;
-
-                // 获取当前已有的 transform 值
-                const transform = window.getComputedStyle(el).transform;
-                if (transform !== 'none') {
-                    // matrix(1, 0, 0, 1, x, y)
-                    const values = transform.split('(')[1].split(')')[0].split(',');
-                    initialTransX = parseFloat(values[4]);
-                    initialTransY = parseFloat(values[5]);
-                } else {
-                    initialTransX = 0;
-                    initialTransY = 0;
-                }
-
-                // 添加拖拽样式 (光标变握拳)
-                el.classList.add('is-dragging');
-                
-                // 防止拖拽过程中选中文本，影响体验
-                document.body.style.userSelect = 'none';
+                // 记录鼠标按下时的 Y 坐标
+                startY = e.pageY - container.offsetTop;
+                // 记录当前的滚动条位置
+                scrollTop = container.scrollTop;
             });
-        });
 
-        // 监听全局移动
-        document.addEventListener('mousemove', function(e) {
-            if (!currentDrag) return;
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+                container.classList.remove('is-dragging');
+            });
 
-            e.preventDefault(); // 防止默认事件 (如选中文本)
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+                container.classList.remove('is-dragging');
+            });
 
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-
-            // 应用新的位置
-            currentDrag.style.transform = `translate(${initialTransX + dx}px, ${initialTransY + dy}px)`;
-        });
-
-        // 监听全局松开
-        document.addEventListener('mouseup', function(e) {
-            if (currentDrag) {
-                currentDrag.classList.remove('is-dragging');
-                currentDrag = null;
-                // 恢复文本选择
-                document.body.style.userSelect = ''; 
-            }
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                
+                e.preventDefault(); // 防止选中文本
+                
+                // 计算鼠标移动的距离
+                const y = e.pageY - container.offsetTop;
+                const walk = (y - startY) * 1; // 1是滚动速度，可调整
+                
+                // 修改滚动条位置 (方向相反，鼠标往上拖，内容往下滚，即滚动条数值增加)
+                container.scrollTop = scrollTop - walk;
+            });
         });
 
         // === 2. Help 点击提示 ===
         function showHelp() {
-            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. DRAG panels by holding left mouse button on empty areas!\n4. Toggle Theme to switch Light/Dark mode.");
+            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Grab and drag content area to scroll (like a touchscreen)!\n4. Toggle Theme to switch Light/Dark mode.");
         }
 
         // === 3. 主题切换 ===

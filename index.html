@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
     
+    <!-- 【修改点 1】在这里替换浏览器标签页的图标 (favicon) -->
+    <!-- 请将 href 换成你自己的图标文件路径，如 ./files/icon.png -->
+    <link rel="icon" href="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50">
+
     <style>
         /* =========================================
            CSS Styles - Fully Responsive Retro Layout
@@ -54,9 +58,19 @@
             color: var(--text-color);
         }
 
-        /* === 顶部蓝色标题栏 === */
+        /* === 顶部标题栏 === */
         .title-bar {
-            background: linear-gradient(90deg, var(--blue), #1084d0);
+            /* 【修改点 2】改为彩虹色渐变背景 */
+            background: linear-gradient(to right, 
+                #ff0000, /* 红 */
+                #ffa500, /* 橙 */
+                #ffff00, /* 黄 */
+                #008000, /* 绿 */
+                #0000ff, /* 蓝 */
+                #4b0082, /* 靛 */
+                #ee82ee  /* 紫 */
+            );
+            
             color: white;
             padding: 4px 8px;
             font-weight: bold;
@@ -67,6 +81,7 @@
             flex-shrink: 0; 
             height: 32px;
             z-index: 10;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 增加文字阴影以防背景太亮看不清 */
         }
 
         .title-text {
@@ -351,7 +366,12 @@
     <!-- 1. 顶部标题栏 -->
     <div class="title-bar">
         <div class="title-text">
-            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50" style="width:18px; height:18px; background:white; border:1px solid gray;">
+            <!-- 【修改点 3】在此更换标题栏左上角的图标图片 -->
+            <!-- 将 src 修改为您的本地图片路径，例如 src="./files/logo.png" -->
+            <img src="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50" 
+                 alt="Logo"
+                 style="width:18px; height:18px; background:white; border:1px solid gray;">
+                 
             Mengjia Zhang - Academic Profile
         </div>
     </div>
@@ -369,6 +389,7 @@
         <!-- 左侧栏 (在手机端显示在顶部) -->
         <aside class="sidebar">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
+                <!-- 请替换下面的 avatar.jpg 为实际照片 -->
                 <img src="./files/avatar.jpg" 
                      alt="Avatar" 
                      style="width:195px; height:273px; object-fit: cover; border:2px solid gray; box-shadow: 2px 2px 0 var(--text-color); background:white; margin-bottom:10px;">

@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
     
-    <!-- 浏览器标签页图标 -->
+    <!-- 
+       【图标说明】
+       浏览器标签页图标 (Favicon)。
+       如果您希望这里也是严格的圆形，请使用一张“背景透明、内容为圆形”的 PNG 图片。
+    -->
     <link rel="icon" href="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50">
 
     <style>
@@ -59,11 +63,18 @@
 
         /* === 顶部标题栏 === */
         .title-bar {
-            /* 降低饱和度的彩虹色渐变 */
+            /* 低饱和度彩虹色渐变 */
             background: linear-gradient(to right, 
-                #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff
+                #ffadad, /* 浅红 */
+                #ffd6a5, /* 浅橙 */
+                #fdffb6, /* 浅黄 */
+                #caffbf, /* 浅绿 */
+                #9bf6ff, /* 浅青 */
+                #a0c4ff, /* 浅蓝 */
+                #bdb2ff  /* 浅紫 */
             );
-            color: #000; 
+            
+            color: #000; /* 配合浅色背景，使用深色文字 */
             padding: 4px 8px;
             font-weight: bold;
             display: flex;
@@ -84,7 +95,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: #000080; 
+            color: #000080;
         }
 
         /* === 菜单栏 === */
@@ -285,7 +296,7 @@
         .info-table td { padding: 8px 0; vertical-align: top; }
         .info-label { font-weight: bold; width: 110px; opacity: 0.9; min-width: 90px; }
 
-        /* 卡片悬停效果 */
+        /* 卡片悬停效果：加深颜色 + 上浮 */
         .paper-card {
             background: var(--paper-bg);
             border: 1px solid var(--win-dark);
@@ -298,7 +309,7 @@
         
         .paper-card:hover {
             transform: translateY(-3px);
-            background-color: #f7f7f7;
+            background-color: #f7f7f7;   /* Light模式下变灰一点点 */
             border-color: var(--blue); 
             box-shadow: 4px 4px 2px rgba(0,0,0,0.1);
         }
@@ -306,7 +317,7 @@
         [data-theme="dark"] .paper-card { border-color: #555; box-shadow: 3px 3px 0 #222; }
         
         [data-theme="dark"] .paper-card:hover {
-            background-color: #404040;
+            background-color: #404040; /* Dark模式下稍微变亮 */
             border-color: #8ab4f8;
         }
 
@@ -374,7 +385,7 @@
     <!-- 1. 顶部标题栏 -->
     <div class="title-bar">
         <div class="title-text">
-            <!-- 【修改 1】将这里的 border-radius 设为 50%，实现圆形图标 -->
+            <!-- 【修改点】border-radius: 50% 确保图标显示为圆形 -->
             <img src="https://api.dicebear.com/7.x/identicon/svg?seed=mz&scale=50" 
                  alt="Logo"
                  style="width:18px; height:18px; background:white; border:1px solid gray; border-radius: 50%;">
@@ -396,8 +407,11 @@
         <!-- 左侧栏 (在手机端显示在顶部) -->
         <aside class="sidebar">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
-                <!-- 请替换下面的 avatar.jpg 为实际照片 -->
-                <!-- 如果希望这个大照片也是圆形的，请在 style 里添加 border-radius: 50%; -->
+                <!-- 
+                   【头像说明】
+                   这里没有设置 border-radius，因此头像保持长方形 (5:7 比例)。
+                   大小设置为 195px * 273px。
+                -->
                 <img src="./files/avatar.jpg" 
                      alt="Avatar" 
                      style="width:195px; height:273px; object-fit: cover; border:2px solid gray; box-shadow: 2px 2px 0 var(--text-color); background:white; margin-bottom:10px;">
@@ -609,6 +623,7 @@
 
     <!-- 4. 底部状态栏 -->
     <div class="status-bar">
+        <!-- 随机显示句子 -->
         <span id="status-text">Ready.</span>
         <span id="clock">00:00 PM</span>
     </div>

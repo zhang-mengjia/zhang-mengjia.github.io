@@ -1,0 +1,336 @@
+/* =========================================
+   CSS Styles - Fully Responsive Retro Layout
+   ========================================= */
+
+:root {
+    --win-gray: #c0c0c0;
+    --win-light: #dfdfdf;
+    --win-dark: #808080;
+    --white: #ffffff;
+    --black: #000000;
+    --blue: #000080;
+    --text-color: #000000;
+    --paper-bg: #ffffff;
+    --highlight-bg: #000080;
+    --highlight-text: #ffffff;
+    --pdf-red: #cc0000;
+}
+
+[data-theme="dark"] {
+    --win-gray: #4a4a4a;
+    --win-light: #666;
+    --win-dark: #222;
+    --white: #dcdcdc; 
+    --black: #000;
+    --blue: #000040;
+    --text-color: #ffffff;
+    --paper-bg: #333333;
+    --highlight-bg: #8ab4f8;
+    --highlight-text: #000000;
+    --pdf-red: #ff6666;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--win-gray);
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", "Tahoma", sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    color: var(--text-color);
+}
+
+/* === 顶部标题栏 === */
+.title-bar {
+    background: linear-gradient(to right, 
+        #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff
+    );
+    color: #000;
+    padding: 4px 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--win-dark);
+    flex-shrink: 0; 
+    height: 32px;
+    z-index: 10;
+}
+
+.title-text {
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000080;
+}
+
+/* === 菜单栏 === */
+.menu-bar {
+    padding: 2px 0;
+    border-bottom: 1px solid var(--win-dark);
+    box-shadow: 0 1px 0 var(--white);
+    display: flex;
+    background: var(--win-gray);
+    flex-shrink: 0;
+    overflow-x: auto; 
+}
+
+.menu-item {
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+.menu-item:hover {
+    background-color: var(--highlight-bg);
+    color: var(--highlight-text);
+}
+
+/* === 主体布局容器 === */
+.main-container {
+    display: flex;
+    flex: 1; 
+    padding: 10px;
+    gap: 12px;
+    overflow: hidden; 
+}
+
+/* === 滚动区域通用样式 (Sidebar & Content) === */
+.sidebar, .content-pane {
+    overflow-y: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: var(--win-dark) var(--win-light);
+    scroll-behavior: smooth; 
+}
+
+/* === 左侧边栏 (Sidebar) === */
+.sidebar {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+    padding-right: 2px; 
+}
+
+/* === 右侧内容区 (Content) === */
+.content-pane {
+    flex: 1;
+    background: var(--paper-bg);
+    border: 2px solid;
+    border-color: var(--win-dark) var(--white) var(--white) var(--win-dark);
+    padding: 30px;
+    min-width: 0; 
+}
+
+/* === 3D 边框通用样式 === */
+.panel-inset {
+    background: var(--paper-bg);
+    border: 2px solid;
+    border-color: var(--win-dark) var(--white) var(--white) var(--win-dark);
+    padding: 10px;
+}
+
+.panel-outset {
+    background: var(--win-gray);
+    border: 2px solid;
+    border-color: var(--white) var(--black) var(--black) var(--white);
+    padding: 8px;
+}
+
+/* === 侧边栏元素 === */
+.contact-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-card {
+    background: var(--win-gray);
+    border: 2px solid;
+    border-color: var(--white) var(--win-dark) var(--win-dark) var(--white);
+    padding: 10px;
+    transition: all 0.2s ease;
+    cursor: default; 
+}
+.contact-card:hover {
+    border-color: var(--white) var(--black) var(--black) var(--white);
+    transform: translateY(-1px);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--blue);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-content {
+    font-size: 13px;
+    margin-left: 0;
+    word-break: break-word; 
+    line-height: 1.5;
+}
+
+/* =========================================
+   Retro Button Style
+   ========================================= */
+.retro-btn {
+    background-color: #c0c0c0;
+    color: #000080;
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", "Tahoma", sans-serif;
+    font-size: 13px;
+    padding: 2px 10px;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    cursor: pointer;
+    margin-left: 5px;
+    display: inline-block;
+    text-align: center;
+    outline: none;
+    flex-shrink: 0; 
+}
+.retro-btn:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: translateY(1px);
+}
+
+[data-theme="dark"] .retro-btn {
+    color: #8ab4f8; 
+    background-color: #4a4a4a;
+    border-top-color: #666;
+    border-left-color: #666;
+    border-right-color: #222;
+    border-bottom-color: #222;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 5px;
+    margin-bottom: 6px;
+}
+.info-row:last-child { margin-bottom: 0; }
+
+.email-link {
+    color: blue;
+    text-decoration: underline;
+    font-size: 12px;
+    word-break: break-all; 
+    cursor: pointer;
+}
+[data-theme="dark"] .email-link { color: #8ab4f8; }
+
+.nav-btn {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--win-gray);
+    border: 2px solid;
+    border-color: var(--white) var(--black) var(--black) var(--white);
+    padding: 10px; 
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav-btn:hover { background: var(--win-light); }
+.nav-btn:active {
+    border-color: var(--black) var(--white) var(--white) var(--black);
+    transform: translateY(1px);
+}
+
+h2 {
+    font-size: 18px; margin: 0 0 15px 0; color: var(--blue);
+    border-bottom: 2px solid var(--win-gray); padding-bottom: 5px;
+}
+[data-theme="dark"] h2 { color: #8ab4f8; }
+
+.info-table { width: 100%; font-size: 14px; border-collapse: collapse; color: var(--text-color); }
+.info-table td { padding: 8px 0; vertical-align: top; }
+.info-label { font-weight: bold; width: 110px; opacity: 0.9; min-width: 90px; }
+
+.paper-card {
+    background: var(--paper-bg);
+    border: 1px solid var(--win-dark);
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 3px 3px 0 var(--win-light);
+    transition: background-color 0.2s, transform 0.2s;
+    cursor: default; 
+}
+.paper-card:hover {
+    transform: translateY(-3px);
+    background-color: #f7f7f7; 
+    border-color: var(--blue); 
+    box-shadow: 4px 4px 2px rgba(0,0,0,0.1);
+}
+[data-theme="dark"] .paper-card { border-color: #555; box-shadow: 3px 3px 0 #222; }
+[data-theme="dark"] .paper-card:hover {
+    background-color: #404040;
+    border-color: #8ab4f8;
+}
+
+.news-list { list-style-type: none; padding: 0; margin: 0; }
+.news-item { margin-bottom: 12px; padding-left: 20px; position: relative; font-size: 14px; line-height: 1.5; }
+.news-item::before { content: "■"; color: var(--blue); font-size: 10px; position: absolute; left: 0; top: 5px; }
+.news-date { font-weight: bold; font-family: "Courier New", monospace; margin-right: 6px; background: var(--win-light); padding: 0 4px; border: 1px solid var(--win-dark); font-size: 13px; display: inline-block;}
+
+.pdf-link {
+    font-family: "Arial", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--pdf-red);
+    text-decoration: none;
+    border: 1px solid var(--pdf-red);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 10px;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.pdf-link:hover { background-color: var(--pdf-red); color: white; }
+
+.status-bar {
+    background: var(--win-gray);
+    padding: 4px 8px;
+    border-top: 2px solid var(--white);
+    font-size: 12px;
+    display: flex; justify-content: space-between;
+    color: var(--text-color);
+    flex-shrink: 0;
+}
+
+/* Toast 提示 */
+#toast {
+    visibility: hidden; min-width: 250px; margin-left: -125px;
+    background-color: #333; color: #fff; text-align: center;
+    border-radius: 2px; padding: 10px; position: fixed;
+    z-index: 1000; left: 50%; bottom: 40px;
+    font-size: 14px; border: 1px solid white; box-shadow: 3px 3px 0 black;
+}
+#toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 40px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 40px; opacity: 1;} to {bottom: 0; opacity: 0;} }

@@ -676,3 +676,193 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+/* =========================================
+   头像轮播样式
+   ========================================= */
+
+.avatar-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 195px;
+    height: 273px;
+    overflow: hidden;
+}
+
+.avatar-image {
+    width: 195px;
+    height: 273px;
+    object-fit: cover;
+    border: 2px solid gray;
+    box-shadow: 2px 2px 0 var(--text-color);
+    background: white;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.avatar-image.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* 箭头样式 - 符合复古风格 */
+.carousel-arrow {
+    background-color: var(--win-gray);
+    color: var(--blue);
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", "Tahoma", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    border: 2px solid;
+    border-color: var(--white) var(--win-dark) var(--win-dark) var(--white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+    background-color: var(--win-light);
+    border-color: var(--white) var(--black) var(--black) var(--white);
+}
+
+.carousel-arrow:active {
+    border-color: var(--win-dark) var(--white) var(--white) var(--win-dark);
+    transform: translate(1px, 1px);
+}
+
+[data-theme="dark"] .carousel-arrow {
+    color: #8ab4f8;
+    background-color: #4a4a4a;
+    border-top-color: #666;
+    border-left-color: #666;
+    border-right-color: #222;
+    border-bottom-color: #222;
+}
+
+[data-theme="dark"] .carousel-arrow:hover {
+    background-color: #666;
+    border-color: #666 #222 #222 #666;
+}
+
+/* 进度指示点样式 */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--win-dark);
+    border: 1px solid var(--win-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background-color: var(--win-light);
+    border-color: var(--win-light);
+}
+
+[data-theme="dark"] .dot {
+    background-color: #666;
+    border-color: #666;
+}
+
+[data-theme="dark"] .dot.active {
+    background-color: #8ab4f8;
+    border-color: #8ab4f8;
+}
+
+[data-theme="dark"] .dot:hover {
+    background-color: #888;
+    border-color: #888;
+}
+
+/* 移动端箭头优化 */
+@media (max-width: 768px) {
+    .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .avatar-container {
+        width: 170px;
+        height: 238px;
+    }
+    
+    .avatar-image {
+        width: 170px;
+        height: 238px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-arrow {
+        width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+    
+    .avatar-container {
+        width: 150px;
+        height: 210px;
+    }
+    
+    .avatar-image {
+        width: 150px;
+        height: 210px;
+    }
+    
+    .carousel-dots {
+        gap: 6px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 360px) {
+    .avatar-container {
+        width: 120px;
+        height: 168px;
+    }
+    
+    .avatar-image {
+        width: 120px;
+        height: 168px;
+    }
+    
+    .carousel-arrow {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+}

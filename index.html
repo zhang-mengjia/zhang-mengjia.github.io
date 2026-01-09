@@ -12,15 +12,15 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- 图标路径 -->
-    <link rel="icon" href="assets/images/icon.png">
-    <link rel="apple-touch-icon" href="assets/images/icon.png">
+    <link rel="icon" href="assets/icon/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon/icon.png">
 </head>
 <body>
 
     <!-- 顶部标题栏 -->
     <div class="title-bar">
         <div class="title-text">
-            <img src="assets/images/icon.png" 
+            <img src="assets/icon/icon.png" 
                  alt="Logo"
                  style="width:18px; height:18px; background:white; border:1px solid gray; border-radius: 50%;">
                  
@@ -41,9 +41,37 @@
         <!-- 左侧栏 -->
         <aside class="sidebar" id="sidebar-panel">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
-                <img src="assets/images/avatar.jpg" 
-                     alt="Avatar" 
-                     style="width:195px; height:273px; object-fit: cover; border:2px solid gray; box-shadow: 2px 2px 0 var(--text-color); background:white; margin-bottom:10px;">
+                <!-- 头像轮播容器 -->
+                <div class="avatar-carousel">
+                    <!-- 左箭头 -->
+                    <button class="carousel-arrow carousel-arrow-prev" onclick="changeAvatar(-1)">
+                        ◀
+                    </button>
+                    
+                    <!-- 头像容器 -->
+                    <div class="avatar-container">
+                        <img src="assets/avatar/avatar.jpg" 
+                             alt="Avatar" 
+                             class="avatar-image active"
+                             data-index="0">
+                        <!-- 可以在这里添加更多头像 -->
+                        <!-- <img src="assets/avatar/avatar2.jpg" alt="Avatar 2" class="avatar-image" data-index="1"> -->
+                        <!-- <img src="assets/avatar/avatar3.jpg" alt="Avatar 3" class="avatar-image" data-index="2"> -->
+                    </div>
+                    
+                    <!-- 右箭头 -->
+                    <button class="carousel-arrow carousel-arrow-next" onclick="changeAvatar(1)">
+                        ▶
+                    </button>
+                </div>
+                
+                <!-- 进度指示点 -->
+                <div class="carousel-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <!-- 添加更多点对应更多头像 -->
+                    <!-- <span class="dot" data-index="1"></span> -->
+                    <!-- <span class="dot" data-index="2"></span> -->
+                </div>
                 
                 <h3 style="margin:5px 0; font-size:20px;">Mengjia Zhang<br><span style="font-size:16px; font-weight:normal;">(张梦佳)</span></h3>
                 <div style="font-size:13px; opacity:0.8; margin-top:5px;">
@@ -250,7 +278,7 @@
     <script>
         // === 1. Help 点击提示 ===
         function showHelp() {
-            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Scroll normally to view content.\n4. Toggle Theme to switch Light/Dark mode.");
+            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Scroll normally to view content.\n4. Toggle Theme to switch Light/Dark mode.\n5. Use arrow buttons to switch between different avatars.");
         }
 
         // === 2. 主题切换 ===
@@ -285,14 +313,66 @@
             });
         }
 
-        // === 4. 时钟 & 随机金句 & 页面加载 ===
+        // === 4. 头像切换功能 ===
+        let currentAvatarIndex = 0;
+        
+        function changeAvatar(direction) {
+            const avatars = document.querySelectorAll('.avatar-image');
+            const dots = document.querySelectorAll('.dot');
+            
+            if (avatars.length <= 1) return; // 如果只有一个头像，不执行切换
+            
+            // 移除当前激活状态
+            avatars[currentAvatarIndex].classList.remove('active');
+            dots[currentAvatarIndex].classList.remove('active');
+            
+            // 计算新索引
+            currentAvatarIndex += direction;
+            
+            // 循环处理
+            if (currentAvatarIndex >= avatars.length) {
+                currentAvatarIndex = 0;
+            } else if (currentAvatarIndex < 0) {
+                currentAvatarIndex = avatars.length - 1;
+            }
+            
+            // 添加新激活状态
+            avatars[currentAvatarIndex].classList.add('active');
+            dots[currentAvatarIndex].classList.add('active');
+        }
+        
+        // 点击点切换头像
+        function setupDotClickHandlers() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    const avatars = document.querySelectorAll('.avatar-image');
+                    const currentDots = document.querySelectorAll('.dot');
+                    
+                    // 移除当前激活状态
+                    avatars[currentAvatarIndex].classList.remove('active');
+                    currentDots[currentAvatarIndex].classList.remove('active');
+                    
+                    // 设置新索引
+                    currentAvatarIndex = index;
+                    
+                    // 添加新激活状态
+                    avatars[currentAvatarIndex].classList.add('active');
+                    currentDots[currentAvatarIndex].classList.add('active');
+                });
+            });
+        }
+
+        // === 5. 时钟 & 随机金句 & 页面加载 ===
         function updateClock() {
             const d = new Date();
             document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
 
         window.onload = function() {
-            // 只保留基础功能，无打字机启动逻辑
+            // 初始化头像切换功能
+            setupDotClickHandlers();
+            
             updateClock();
             setInterval(updateClock, 1000);
 

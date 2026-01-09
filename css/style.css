@@ -688,13 +688,15 @@ body {
     justify-content: center;
     margin-bottom: 10px;
     gap: 8px;
+    perspective: 1000px;
 }
 
 .avatar-container {
     position: relative;
     width: 195px;
     height: 273px;
-    overflow: hidden;
+    overflow: visible;
+    perspective: 1000px;
 }
 
 .avatar-image {
@@ -704,16 +706,32 @@ body {
     border: 2px solid gray;
     box-shadow: 2px 2px 0 var(--text-color);
     background: white;
-    transition: opacity 0.3s ease;
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
+    border-radius: 12px;
+    transform-origin: center;
+    transform: rotateY(90deg) rotateZ(0deg);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    backface-visibility: hidden;
 }
 
 .avatar-image.active {
     opacity: 1;
     position: relative;
+    transform: rotateY(0deg) rotateZ(0deg) scale(1);
+    z-index: 10;
+}
+
+.avatar-image.exit-left {
+    transform: rotateY(-90deg) rotateZ(-5deg);
+    opacity: 0;
+}
+
+.avatar-image.exit-right {
+    transform: rotateY(90deg) rotateZ(5deg);
+    opacity: 0;
 }
 
 /* 箭头样式 - 符合复古风格 */
@@ -819,6 +837,7 @@ body {
     .avatar-image {
         width: 170px;
         height: 238px;
+        border-radius: 10px;
     }
 }
 
@@ -837,6 +856,7 @@ body {
     .avatar-image {
         width: 150px;
         height: 210px;
+        border-radius: 9px;
     }
     
     .carousel-dots {
@@ -858,6 +878,7 @@ body {
     .avatar-image {
         width: 120px;
         height: 168px;
+        border-radius: 8px;
     }
     
     .carousel-arrow {

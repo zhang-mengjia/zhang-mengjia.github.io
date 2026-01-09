@@ -41,7 +41,7 @@
         <!-- 左侧栏 -->
         <aside class="sidebar" id="sidebar-panel">
             <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
-                <!-- 头像轮播容器 -->
+                <!-- 头像轮播容器 (5:7竖版比例) -->
                 <div class="avatar-carousel">
                     <!-- 左箭头 -->
                     <button class="carousel-arrow carousel-arrow-prev" onclick="changeAvatar(-1)">
@@ -50,13 +50,20 @@
                     
                     <!-- 头像容器 -->
                     <div class="avatar-container">
-                        <img src="assets/avatar/avatar.jpg" 
-                             alt="Avatar" 
-                             class="avatar-image active"
-                             data-index="0">
-                        <!-- 可以在这里添加更多头像 -->
-                        <!-- <img src="assets/avatar/avatar2.jpg" alt="Avatar 2" class="avatar-image" data-index="1"> -->
-                        <!-- <img src="assets/avatar/avatar3.jpg" alt="Avatar 3" class="avatar-image" data-index="2"> -->
+                        <img src="assets/avatar/avatar (1).jpg" alt="Avatar 1" class="avatar-image active" data-index="0" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (2).jpg" alt="Avatar 2" class="avatar-image" data-index="1" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (3).jpg" alt="Avatar 3" class="avatar-image" data-index="2" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (4).jpg" alt="Avatar 4" class="avatar-image" data-index="3" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (5).jpg" alt="Avatar 5" class="avatar-image" data-index="4" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (6).jpg" alt="Avatar 6" class="avatar-image" data-index="5" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (7).jpg" alt="Avatar 7" class="avatar-image" data-index="6" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (8).jpg" alt="Avatar 8" class="avatar-image" data-index="7" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (9).jpg" alt="Avatar 9" class="avatar-image" data-index="8" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (10).jpg" alt="Avatar 10" class="avatar-image" data-index="9" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (11).jpg" alt="Avatar 11" class="avatar-image" data-index="10" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (12).jpg" alt="Avatar 12" class="avatar-image" data-index="11" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (13).jpg" alt="Avatar 13" class="avatar-image" data-index="12" onclick="changeAvatar(1)" style="cursor: pointer;">
+                        <img src="assets/avatar/avatar (14).jpg" alt="Avatar 14" class="avatar-image" data-index="13" onclick="changeAvatar(1)" style="cursor: pointer;">
                     </div>
                     
                     <!-- 右箭头 -->
@@ -68,9 +75,19 @@
                 <!-- 进度指示点 -->
                 <div class="carousel-dots">
                     <span class="dot active" data-index="0"></span>
-                    <!-- 添加更多点对应更多头像 -->
-                    <!-- <span class="dot" data-index="1"></span> -->
-                    <!-- <span class="dot" data-index="2"></span> -->
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                    <span class="dot" data-index="4"></span>
+                    <span class="dot" data-index="5"></span>
+                    <span class="dot" data-index="6"></span>
+                    <span class="dot" data-index="7"></span>
+                    <span class="dot" data-index="8"></span>
+                    <span class="dot" data-index="9"></span>
+                    <span class="dot" data-index="10"></span>
+                    <span class="dot" data-index="11"></span>
+                    <span class="dot" data-index="12"></span>
+                    <span class="dot" data-index="13"></span>
                 </div>
                 
                 <h3 style="margin:5px 0; font-size:20px;">Mengjia Zhang<br><span style="font-size:16px; font-weight:normal;">(张梦佳)</span></h3>
@@ -320,25 +337,30 @@
             const avatars = document.querySelectorAll('.avatar-image');
             const dots = document.querySelectorAll('.dot');
             
-            if (avatars.length <= 1) return; // 如果只有一个头像，不执行切换
+            if (avatars.length <= 1) return;
             
-            // 移除当前激活状态
-            avatars[currentAvatarIndex].classList.remove('active');
+            const currentAvatar = avatars[currentAvatarIndex];
+            
+            // 添加退出动画类
+            currentAvatar.classList.add(direction > 0 ? 'exit-right' : 'exit-left');
+            currentAvatar.classList.remove('active');
             dots[currentAvatarIndex].classList.remove('active');
             
             // 计算新索引
             currentAvatarIndex += direction;
-            
-            // 循环处理
             if (currentAvatarIndex >= avatars.length) {
                 currentAvatarIndex = 0;
             } else if (currentAvatarIndex < 0) {
                 currentAvatarIndex = avatars.length - 1;
             }
             
-            // 添加新激活状态
-            avatars[currentAvatarIndex].classList.add('active');
-            dots[currentAvatarIndex].classList.add('active');
+            // 添加进入动画
+            const nextAvatar = avatars[currentAvatarIndex];
+            setTimeout(() => {
+                nextAvatar.classList.add('active');
+                nextAvatar.classList.remove('exit-left', 'exit-right');
+                dots[currentAvatarIndex].classList.add('active');
+            }, 50);
         }
         
         // 点击点切换头像
@@ -378,7 +400,11 @@
 
             const quotes = [
                 "慎重如始，则无败事。",
-                "都是时代里的麦杆，风一吹过就倒伏在地上。"
+                "都是时代里的麦杆，风一吹过就倒伏在地上。",
+                "回朕车以复路兮，及行迷之未远。",
+                "安得广厦千万间，大庇天下寒士俱欢颜。",
+                "悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。",
+                "Carpe diem, quam minimum credula postero."
             ];
             const randomIndex = Math.floor(Math.random() * quotes.length);
             document.getElementById('status-text').innerText = quotes[randomIndex];

@@ -712,7 +712,7 @@ body {
     opacity: 0;
     border-radius: 12px;
     transform-origin: center;
-    transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(0deg) rotateZ(0deg) scale(1);
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     backface-visibility: hidden;
 }
@@ -725,12 +725,12 @@ body {
 }
 
 .avatar-image.exit-left {
-    transform: rotateY(-90deg) rotateZ(-5deg);
+    transform: rotateY(-90deg) rotateZ(-8deg) translateX(-60px) translateY(15px) scale(0.92);
     opacity: 0;
 }
 
 .avatar-image.exit-right {
-    transform: rotateY(90deg) rotateZ(5deg);
+    transform: rotateY(90deg) rotateZ(8deg) translateX(60px) translateY(15px) scale(0.92);
     opacity: 0;
 }
 

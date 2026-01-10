@@ -830,13 +830,13 @@ body {
     }
     
     .avatar-container {
-        width: 170px;
-        height: 238px;
+        width: 180px;
+        height: 252px;
     }
     
     .avatar-image {
-        width: 170px;
-        height: 238px;
+        width: 180px;
+        height: 252px;
         border-radius: 10px;
     }
 }
@@ -849,13 +849,13 @@ body {
     }
     
     .avatar-container {
-        width: 150px;
-        height: 210px;
+        width: 170px;
+        height: 238px;
     }
     
     .avatar-image {
-        width: 150px;
-        height: 210px;
+        width: 170px;
+        height: 238px;
         border-radius: 9px;
     }
     
@@ -871,13 +871,13 @@ body {
 
 @media (max-width: 360px) {
     .avatar-container {
-        width: 120px;
-        height: 168px;
+        width: 150px;
+        height: 210px;
     }
     
     .avatar-image {
-        width: 120px;
-        height: 168px;
+        width: 150px;
+        height: 210px;
         border-radius: 8px;
     }
     

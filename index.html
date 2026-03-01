@@ -1,180 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-style="atelier">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#c0c0c0">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+    <meta name="theme-color" content="#f2e9da">
     <title>Mengjia Zhang (张梦佳) - Academic Profile</title>
-    
-    <!-- 链接外部 CSS 文件 -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- 图标路径 -->
     <link rel="icon" href="assets/icon/icon.png">
     <link rel="apple-touch-icon" href="assets/icon/icon.png">
 </head>
 <body>
-
-    <!-- 顶部标题栏 -->
-    <div class="title-bar">
-        <div class="title-text">
-            <img src="assets/icon/icon.png" 
-                 alt="Logo"
-                 style="width:18px; height:18px; background:white; border:1px solid gray; border-radius: 50%;">
-                 
-            Mengjia Zhang - Academic Profile
+    <header class="topbar" aria-label="Top navigation">
+        <div class="topbar-brand-block">
+            <div class="topbar-brand">Mengjia Zhang</div>
+            <div class="topbar-slogan" id="top-slogan" aria-live="polite"></div>
         </div>
-    </div>
+        <nav class="topbar-nav">
+            <a href="#about" class="top-nav-link">About Me</a>
+            <a href="#research" class="top-nav-link">Research Interests</a>
+            <a href="#news" class="top-nav-link">News</a>
+            <a href="#education" class="top-nav-link">Education</a>
+            <a href="#publications" class="top-nav-link">Publications</a>
+        </nav>
+        <a href="assets/docs/CV_MengjiaZhang.pdf" download class="top-nav-link top-nav-link-cv">Download CV</a>
+    </header>
 
-    <!-- 菜单栏 -->
-    <div class="menu-bar">
-        <div class="menu-item" onclick="window.print()">File (Print to PDF)</div>
-        <div class="menu-item" onclick="toggleTheme()">View (Switch Theme)</div>
-        <div class="menu-item" onclick="showHelp()">Help</div>
-    </div>
-
-    <!-- 主体区域 -->
-    <div class="main-container">
-        
-        <!-- 左侧栏 -->
+    <div class="page-shell">
         <aside class="sidebar" id="sidebar-panel">
-            <div class="panel-inset" style="text-align: center; margin-bottom: 5px;">
-                <!-- 头像轮播容器 (5:7竖版比例) -->
-                <div class="avatar-carousel">
-                    <!-- 左箭头 -->
-                    <button class="carousel-arrow carousel-arrow-prev" onclick="changeAvatar(-1)">
-                        ◀
-                    </button>
-                    
-                    <!-- 头像容器 -->
-                    <div class="avatar-container">
-                        <img src="assets/avatar/avatar (1).jpg" alt="Avatar 1" class="avatar-image active" data-index="0" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (2).jpg" alt="Avatar 2" class="avatar-image" data-index="1" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (3).jpg" alt="Avatar 3" class="avatar-image" data-index="2" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (4).jpg" alt="Avatar 4" class="avatar-image" data-index="3" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (5).jpg" alt="Avatar 5" class="avatar-image" data-index="4" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (6).jpg" alt="Avatar 6" class="avatar-image" data-index="5" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (7).jpg" alt="Avatar 7" class="avatar-image" data-index="6" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (8).jpg" alt="Avatar 8" class="avatar-image" data-index="7" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (9).jpg" alt="Avatar 9" class="avatar-image" data-index="8" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (10).jpg" alt="Avatar 10" class="avatar-image" data-index="9" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (11).jpg" alt="Avatar 11" class="avatar-image" data-index="10" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (12).jpg" alt="Avatar 12" class="avatar-image" data-index="11" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (13).jpg" alt="Avatar 13" class="avatar-image" data-index="12" onclick="changeAvatar(1)" style="cursor: pointer;">
-                        <img src="assets/avatar/avatar (14).jpg" alt="Avatar 14" class="avatar-image" data-index="13" onclick="changeAvatar(1)" style="cursor: pointer;">
-                    </div>
-                    
-                    <!-- 右箭头 -->
-                    <button class="carousel-arrow carousel-arrow-next" onclick="changeAvatar(1)">
-                        ▶
-                    </button>
-                </div>
-                
-                <!-- 进度指示点 -->
-                <div class="carousel-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
-                    <span class="dot" data-index="3"></span>
-                    <span class="dot" data-index="4"></span>
-                    <span class="dot" data-index="5"></span>
-                    <span class="dot" data-index="6"></span>
-                    <span class="dot" data-index="7"></span>
-                    <span class="dot" data-index="8"></span>
-                    <span class="dot" data-index="9"></span>
-                    <span class="dot" data-index="10"></span>
-                    <span class="dot" data-index="11"></span>
-                    <span class="dot" data-index="12"></span>
-                    <span class="dot" data-index="13"></span>
-                </div>
-                
-                <h3 style="margin:5px 0; font-size:20px;">Mengjia Zhang<br><span style="font-size:16px; font-weight:normal;">(张梦佳)</span></h3>
-                <div style="font-size:13px; opacity:0.8; margin-top:5px;">
-                    Ph.D. Student<br>CIBR & PUMC
-                </div>
-            </div>
+            <section class="panel profile-panel">
+                <div class="avatar-carousel" aria-label="Avatar carousel">
+                    <button type="button" class="carousel-arrow carousel-arrow-prev" data-direction="-1" aria-label="Previous avatar">◀</button>
 
-            <div class="contact-group">
-                <!-- WeChat -->
-                <div class="contact-card">
-                    <div class="card-title">
-                        <span>💬 WeChat Official Account</span>
+                    <div class="avatar-container" id="avatar-container" aria-live="polite">
+                        <img src="assets/avatar/avatar (1).jpg" alt="Avatar 1" class="avatar-image active" data-index="0" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (2).jpg" alt="Avatar 2" class="avatar-image" data-index="1" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (3).jpg" alt="Avatar 3" class="avatar-image" data-index="2" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (4).jpg" alt="Avatar 4" class="avatar-image" data-index="3" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (5).jpg" alt="Avatar 5" class="avatar-image" data-index="4" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (6).jpg" alt="Avatar 6" class="avatar-image" data-index="5" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (7).jpg" alt="Avatar 7" class="avatar-image" data-index="6" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (8).jpg" alt="Avatar 8" class="avatar-image" data-index="7" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (9).jpg" alt="Avatar 9" class="avatar-image" data-index="8" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (10).jpg" alt="Avatar 10" class="avatar-image" data-index="9" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (11).jpg" alt="Avatar 11" class="avatar-image" data-index="10" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (12).jpg" alt="Avatar 12" class="avatar-image" data-index="11" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (13).jpg" alt="Avatar 13" class="avatar-image" data-index="12" tabindex="0" role="button" aria-label="Next avatar">
+                        <img src="assets/avatar/avatar (14).jpg" alt="Avatar 14" class="avatar-image" data-index="13" tabindex="0" role="button" aria-label="Next avatar">
                     </div>
+
+                    <button type="button" class="carousel-arrow carousel-arrow-next" data-direction="1" aria-label="Next avatar">▶</button>
+                </div>
+
+                <div class="carousel-dots" aria-label="Avatar navigation">
+                    <button type="button" class="dot active" data-index="0" aria-label="Go to avatar 1"></button>
+                    <button type="button" class="dot" data-index="1" aria-label="Go to avatar 2"></button>
+                    <button type="button" class="dot" data-index="2" aria-label="Go to avatar 3"></button>
+                    <button type="button" class="dot" data-index="3" aria-label="Go to avatar 4"></button>
+                    <button type="button" class="dot" data-index="4" aria-label="Go to avatar 5"></button>
+                    <button type="button" class="dot" data-index="5" aria-label="Go to avatar 6"></button>
+                    <button type="button" class="dot" data-index="6" aria-label="Go to avatar 7"></button>
+                    <button type="button" class="dot" data-index="7" aria-label="Go to avatar 8"></button>
+                    <button type="button" class="dot" data-index="8" aria-label="Go to avatar 9"></button>
+                    <button type="button" class="dot" data-index="9" aria-label="Go to avatar 10"></button>
+                    <button type="button" class="dot" data-index="10" aria-label="Go to avatar 11"></button>
+                    <button type="button" class="dot" data-index="11" aria-label="Go to avatar 12"></button>
+                    <button type="button" class="dot" data-index="12" aria-label="Go to avatar 13"></button>
+                    <button type="button" class="dot" data-index="13" aria-label="Go to avatar 14"></button>
+                </div>
+
+                <h1 class="profile-name">Mengjia Zhang <span class="profile-name-cn">(张梦佳)</span></h1>
+                <p class="profile-role">Ph.D. Student<br>CIBR & PUMC</p>
+            </section>
+
+            <section class="panel contact-group">
+                <article class="contact-card">
+                    <h2 class="card-title">WeChat Official Account</h2>
                     <div class="card-content">
                         <div class="info-row">
-                            <span style="font-size: 16px; font-weight: bold;">张初的公众号</span>
-                            <button class="retro-btn" onclick="copyToClipboard('张初的公众号')">
-                                Copy
-                            </button>
+                            <span class="wechat-name">张初的公众号</span>
+                            <button class="copy-btn" data-copy="张初的公众号">Copy</button>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Email -->
-                <div class="contact-card">
-                    <div class="card-title">
-                        <span>✉️ Email:</span>
-                    </div>
+                <article class="contact-card">
+                    <h2 class="card-title">Email</h2>
                     <div class="card-content">
                         <div class="info-row">
                             <a href="mailto:zhangmengjia@cibr.ac.cn" class="email-link">zhangmengjia@cibr.ac.cn</a>
-                            <button class="retro-btn" onclick="copyToClipboard('zhangmengjia@cibr.ac.cn')" title="Copy">Copy</button>
+                            <button class="copy-btn" data-copy="zhangmengjia@cibr.ac.cn" title="Copy">Copy</button>
                         </div>
                         <div class="info-row">
                             <a href="mailto:zhangmengjia@student.pumc.edu.cn" class="email-link">zhangmengjia@student.pumc.edu.cn</a>
-                            <button class="retro-btn" onclick="copyToClipboard('zhangmengjia@student.pumc.edu.cn')" title="Copy">Copy</button>
+                            <button class="copy-btn" data-copy="zhangmengjia@student.pumc.edu.cn" title="Copy">Copy</button>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Address -->
-                <div class="contact-card">
-                    <div class="card-title">
-                        <span>📍 Address:</span>
-                    </div>
+                <article class="contact-card">
+                    <h2 class="card-title">Address</h2>
                     <div class="card-content">
-                        <div style="margin-bottom:8px;">
-                            Building 3, Courtyard 9, Yike Road, Zhongguancun Life Science Park, Changping District, Beijing
-                        </div>
-                        <div style="margin-bottom:8px; font-weight:bold; color:#444;">
-                            北京市昌平区中关村生命科学园医科路9号院3号楼
-                        </div>
-                        <button class="retro-btn" style="margin-left:0;" onclick="copyToClipboard('北京市昌平区中关村生命科学园医科路9号院3号楼 (Building 3, Courtyard 9, Yike Road)')">
-                            Copy Address
-                        </button>
+                        <div class="address-en">Building 3, Courtyard 9, Yike Road, Zhongguancun Life Science Park, Changping District, Beijing</div>
+                        <div class="address-cn">北京市昌平区中关村生命科学园医科路9号院3号楼</div>
+                        <button class="copy-btn address-copy-btn" data-copy="北京市昌平区中关村生命科学园医科路9号院3号楼 (Building 3, Courtyard 9, Yike Road)">Copy Address</button>
                     </div>
-                </div>
-            </div>
-            
-            <div class="panel-outset" style="margin-top: 15px;">
-                 <a href="#about" class="nav-btn">About Me</a>
-                 <a href="#research" class="nav-btn">Research Interests</a>
-                 <a href="#news" class="nav-btn">News</a>
-                 <a href="#education" class="nav-btn">Education</a>
-                 <a href="#publications" class="nav-btn">Publications</a>
-                 
-                 <a href="assets/docs/CV_MengjiaZhang.pdf" download class="nav-btn cv-btn">
-                    <span>💾</span> Download CV (PDF)
-                 </a>
-            </div>
+                </article>
+            </section>
         </aside>
 
-        <!-- 右侧主内容区 -->
         <main class="content-pane" id="main-panel">
-            
-            <section id="about" style="margin-bottom:30px;">
+            <section id="about" class="section-block">
                 <h2>About Me</h2>
                 <table class="info-table">
                     <tr>
                         <td class="info-label">Affiliation:</td>
                         <td>
                             Chinese Institute for Brain Research, Beijing (CIBR)<br>
-                            <span style="color:var(--win-dark); font-size:13px;">北京脑科学与类脑研究所</span>
+                            <span class="affiliation-cn">北京脑科学与类脑研究所</span>
                             <br><br>
-                            Beijing Institute for Brain Research, Chinese Academy of Medical Sciences(CAMS) & Peking Union Medical College (PUMC)<br>
-                            <span style="color:var(--win-dark); font-size:13px;">中国医学科学院北京脑和类脑研究院 & 北京协和医学院脑和类脑学院</span>
+                            Beijing Institute for Brain Research, Chinese Academy of Medical Sciences (CAMS) & Peking Union Medical College (PUMC)<br>
+                            <span class="affiliation-cn">中国医学科学院北京脑和类脑研究院 & 北京协和医学院脑和类脑学院</span>
                         </td>
                     </tr>
                     <tr>
@@ -186,229 +135,197 @@
                         <td>Ph.D. Student</td>
                     </tr>
                 </table>
-                <!-- 文字直接显示，无特效 -->
-                <div style="font-family:'Courier New', monospace; font-size: 15px; line-height:1.6; text-align: justify; margin-top: 15px;">
-                    I enrolled as a Ph.D. student in the Jingfeng Zhou Lab at the Chinese Institute for Brain Research (CIBR), Beijing, under the joint doctoral program with the Beijing Institute for Brain Research, Chinese Academy of Medical Sciences(CAMS) & Peking Union Medical College (PUMC), in September 2025. Previously, I pursued my B.S. degree in Biology (Poling Class) at the School of Life Sciences, Nankai University (NKU), from September 2021 to July 2025. Concurrently, I completed my graduation thesis in the Long Li Lab at the Institute of Biophysics, Chinese Academy of Sciences (IBP, CAS) under the “Chen-Lu Tsou Elite Class” program, from February 2024 to July 2025.
+                <div class="body-text body-text-with-margin">
+                    I enrolled as a Ph.D. student in the Jingfeng Zhou Lab at the Chinese Institute for Brain Research (CIBR), Beijing, under the joint doctoral program with the Beijing Institute for Brain Research, Chinese Academy of Medical Sciences (CAMS) & Peking Union Medical College (PUMC), in September 2025. Previously, I pursued my B.S. degree in Biology (Poling Class) at the School of Life Sciences, Nankai University (NKU), from September 2021 to July 2025. Concurrently, I completed my graduation thesis in the Long Li Lab at the Institute of Biophysics, Chinese Academy of Sciences (IBP, CAS), under the "Chen-Lu Tsou Elite Class" program from February 2024 to July 2025.
                 </div>
             </section>
 
-            <section id="research" style="margin-bottom:30px;">
+            <section id="research" class="section-block">
                 <h2>Research Interests</h2>
-                <!-- 文字直接显示，无特效 -->
-                <div style="font-family:'Courier New', monospace; font-size: 15px; line-height:1.6; text-align: justify;">
-                    <p style="margin-top:0;">I aim to understand the neural basis of associative learning and decision-making, essential cognitive processes that endow us to construct a relational structure of the world around us and use such knowledge to solve daily problems.</p>
-                    <p style="margin-bottom:0;">We design complex and precise Pavlovian and operant tasks for rats or mice to learn and perform, and use techniques including in vivo electrophysiology, one- or two-photon imaging, widefield imaging, optogenetics, chemogenetics, neuropharmacology, statistical analysis, machine learning, and computational modeling, to figure out how neural population activities, especially in the prefrontal cortex and hippocampus, support computations necessary for associative learning and behavior.</p>
+                <div class="body-text">
+                    <p class="paragraph-start">I aim to understand the neural basis of associative learning and decision-making, essential cognitive processes that enable us to construct a relational structure of the world around us and use such knowledge to solve daily problems.</p>
+                    <p class="paragraph-end">We design complex and precise Pavlovian and operant tasks for rats or mice to learn and perform, and use techniques including in vivo electrophysiology, one- or two-photon imaging, widefield imaging, optogenetics, chemogenetics, neuropharmacology, statistical analysis, machine learning, and computational modeling to determine how neural population activities, especially in the prefrontal cortex and hippocampus, support computations necessary for associative learning and behavior.</p>
                 </div>
             </section>
 
-            <section id="news" style="margin-bottom:30px;">
+            <section id="news" class="section-block">
                 <h2>News</h2>
                 <ul class="news-list">
-                    <li class="news-item">
-                        <span class="news-date">[2025.09]</span>
-                        Enrolled in <b>CIBR</b>, under the joint doctoral program with PUMC, majoring in Neurobiology.
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">[2025.07]</span>
-                        Graduated from <b>Nankai University</b> with a B.S. degree in Biology.
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">[2024.02]</span>
-                        Joined <b>Long Li Lab</b> at IBP, CAS to complete my undergraduate graduation design.
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">[2024.02]</span>
-                        Joined <b>IBP, CAS</b> under the “Chen-Lu Tsou Elite Class” program
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">[2021.09]</span>
-                        Enrolled in <b>Nankai University</b>, majoring in Biology (Poling Class).
-                    </li>
+                    <li class="news-item"><span class="news-date">[2025.09]</span> Enrolled in <b>CIBR</b>, under the joint doctoral program with PUMC, majoring in Neurobiology.</li>
+                    <li class="news-item"><span class="news-date">[2025.07]</span> Graduated from <b>Nankai University</b> with a B.S. degree in Biology.</li>
+                    <li class="news-item"><span class="news-date">[2024.02]</span> Joined <b>Long Li Lab</b> at IBP, CAS to complete my undergraduate graduation design.</li>
+                    <li class="news-item"><span class="news-date">[2024.02]</span> Joined <b>IBP, CAS</b> under the "Chen-Lu Tsou Elite Class" program.</li>
+                    <li class="news-item"><span class="news-date">[2021.09]</span> Enrolled in <b>Nankai University</b>, majoring in Biology (Poling Class).</li>
                 </ul>
             </section>
 
-            <section id="education" style="margin-bottom:30px;">
+            <section id="education" class="section-block">
                 <h2>Education</h2>
-                
+
                 <div class="paper-card">
-                    <div style="font-weight:bold; color:var(--blue); display:flex; justify-content:space-between; flex-wrap:wrap;">
+                    <div class="paper-header">
                         <span>Ph.D. in Neurobiology (理学博士)</span>
                         <span>2025.09 - Present</span>
                     </div>
-                    <div style="font-size:14px; margin:8px 0;">
+                    <div class="paper-meta">
                         <b>CIBR & PUMC</b> (北京脑科学与类脑研究所 & 北京协和医学院)<br>
-                        Advisor: <a href="https://zhoulab.cibr.ac.cn/" target="_blank" class="text-link">Jingfeng Zhou Lab (周景峰实验室)</a>
+                        Advisor: <a href="https://zhoulab.cibr.ac.cn/" target="_blank" rel="noopener noreferrer" class="text-link">Jingfeng Zhou Lab (周景峰实验室)</a>
                     </div>
                 </div>
 
                 <div class="paper-card">
-                    <div style="font-weight:bold; color:var(--blue); display:flex; justify-content:space-between; flex-wrap:wrap;">
+                    <div class="paper-header">
                         <span>Joint Training (联合培养)</span>
                         <span>2024.02 - 2025.07</span>
                     </div>
-                    <div style="font-size:14px; margin:8px 0;">
+                    <div class="paper-meta">
                         <b>IBP, CAS</b> (中国科学院生物物理研究所)<br>
-                        Chen-Lu Tsou Elite Class (邹承鲁菁英班); Advisor: <a href="https://www.ibp.cas.cn/rc/ll/202411/t20241108_7436138.html" target="_blank" class="text-link">Long Li Lab (李龙实验室)</a>
+                        Chen-Lu Tsou Elite Class (邹承鲁菁英班); Advisor: <a href="https://www.ibp.cas.cn/rc/ll/202411/t20241108_7436138.html" target="_blank" rel="noopener noreferrer" class="text-link">Long Li Lab (李龙实验室)</a>
                     </div>
                 </div>
 
                 <div class="paper-card">
-                    <div style="font-weight:bold; color:var(--blue); display:flex; justify-content:space-between; flex-wrap:wrap;">
+                    <div class="paper-header">
                         <span>B.S. in Biology (理学学士)</span>
                         <span>2021.09 - 2025.07</span>
                     </div>
-                    <div style="font-size:14px; margin:8px 0;">
+                    <div class="paper-meta">
                         <b>Nankai University</b> (南开大学)<br>
                         Biology (Poling Class) (生物伯苓班)
                     </div>
                 </div>
             </section>
 
-            <section id="publications" style="margin-bottom:30px;">
+            <section id="publications" class="section-block">
                 <h2>Publications</h2>
-                
                 <div class="paper-card">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div style="font-weight:bold; color:var(--blue);">I wish I can have my first paper.</div>
-                        <a href="#" class="pdf-link">PDF</a>
+                    <div class="paper-title-row">
+                        <div class="paper-title">I wish I can have my first paper.</div>
+                        <a href="#" class="pdf-link" aria-label="Publication PDF">PDF</a>
                     </div>
-                    <div style="font-size:14px; margin:6px 0;"><b>Mengjia Zhang</b>, Co-author Name.</div>
-                    <div style="font-size:13px; opacity:0.7;"><i>Nature, 2077</i></div>
+                    <div class="paper-citation"><b>Mengjia Zhang</b>, Co-author Name.</div>
+                    <div class="paper-journal"><i>Nature, 2077</i></div>
                 </div>
-
             </section>
-            
-            <div style="height: 50px;"></div>
-
         </main>
     </div>
 
-    <!-- 底部状态栏 -->
-    <div class="status-bar">
-        <span id="status-text">Ready.</span>
-        <span id="clock">00:00 PM</span>
-    </div>
-
-    <!-- Toast 提示框 -->
-    <div id="toast">Copied to clipboard!</div>
+    <div id="toast" role="status" aria-live="polite">Copied to clipboard!</div>
 
     <script>
-        // === 1. Help 点击提示 ===
-        function showHelp() {
-            alert("💡 User Guide:\n\n1. Use sidebar buttons to navigate.\n2. Click 'Copy' buttons to get contact info.\n3. Scroll normally to view content.\n4. Toggle Theme to switch Light/Dark mode.\n5. Use arrow buttons to switch between different avatars.");
-        }
-
-        // === 2. 主题切换 ===
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if(currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        }
-
-        // === 3. 复制功能 ===
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                var toast = document.getElementById("toast");
-                toast.innerText = "Copied: " + (text.length > 20 ? text.substring(0,20)+"..." : text);
-                toast.className = "show";
-                setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-            }, function(err) {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    alert("Copied!");
-                } catch (err) {
-                    alert("Unable to copy");
-                }
-                document.body.removeChild(textArea);
-            });
-        }
-
-        // === 4. 头像切换功能 ===
         let currentAvatarIndex = 0;
-        
-        function changeAvatar(direction) {
-            const avatars = document.querySelectorAll('.avatar-image');
-            const dots = document.querySelectorAll('.dot');
-            
-            if (avatars.length <= 1) return;
-            
-            const currentAvatar = avatars[currentAvatarIndex];
-            
-            // 添加退出动画类
-            currentAvatar.classList.add(direction > 0 ? 'exit-right' : 'exit-left');
-            currentAvatar.classList.remove('active');
-            dots[currentAvatarIndex].classList.remove('active');
-            
-            // 计算新索引
-            currentAvatarIndex += direction;
-            if (currentAvatarIndex >= avatars.length) {
-                currentAvatarIndex = 0;
-            } else if (currentAvatarIndex < 0) {
-                currentAvatarIndex = avatars.length - 1;
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerText = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2600);
+        }
+
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                const shortText = text.length > 24 ? `${text.substring(0, 24)}...` : text;
+                showToast(`Copied: ${shortText}`);
+            } catch (_) {
+                showToast("Copy failed. Please copy manually.");
             }
-            
-            // 添加进入动画
+        }
+
+        function goToAvatar(nextIndex, directionHint = 1) {
+            const avatars = document.querySelectorAll(".avatar-image");
+            const dots = document.querySelectorAll(".dot");
+            if (avatars.length <= 1 || nextIndex === currentAvatarIndex) return;
+
+            const currentAvatar = avatars[currentAvatarIndex];
+            currentAvatar.classList.remove("exit-left", "exit-right");
+            currentAvatar.classList.add(directionHint > 0 ? "exit-right" : "exit-left");
+            currentAvatar.classList.remove("active");
+            dots[currentAvatarIndex].classList.remove("active");
+
+            currentAvatarIndex = nextIndex;
+
             const nextAvatar = avatars[currentAvatarIndex];
             setTimeout(() => {
-                nextAvatar.classList.add('active');
-                nextAvatar.classList.remove('exit-left', 'exit-right');
-                dots[currentAvatarIndex].classList.add('active');
-            }, 50);
+                nextAvatar.classList.add("active");
+                nextAvatar.classList.remove("exit-left", "exit-right");
+                dots[currentAvatarIndex].classList.add("active");
+            }, 40);
         }
-        
-        // 点击点切换头像
-        function setupDotClickHandlers() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
-                    const avatars = document.querySelectorAll('.avatar-image');
-                    const currentDots = document.querySelectorAll('.dot');
-                    
-                    // 移除当前激活状态
-                    avatars[currentAvatarIndex].classList.remove('active');
-                    currentDots[currentAvatarIndex].classList.remove('active');
-                    
-                    // 设置新索引
-                    currentAvatarIndex = index;
-                    
-                    // 添加新激活状态
-                    avatars[currentAvatarIndex].classList.add('active');
-                    currentDots[currentAvatarIndex].classList.add('active');
+
+        function changeAvatar(direction) {
+            const avatars = document.querySelectorAll(".avatar-image");
+            if (avatars.length <= 1) return;
+
+            let nextIndex = currentAvatarIndex + direction;
+            if (nextIndex >= avatars.length) nextIndex = 0;
+            if (nextIndex < 0) nextIndex = avatars.length - 1;
+            goToAvatar(nextIndex, direction);
+        }
+
+        function setupAvatarHandlers() {
+            document.querySelectorAll(".carousel-arrow").forEach((button) => {
+                button.addEventListener("click", () => changeAvatar(Number(button.dataset.direction)));
+            });
+
+            document.querySelectorAll(".avatar-image").forEach((image) => {
+                image.addEventListener("click", () => changeAvatar(1));
+                image.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        changeAvatar(1);
+                    }
+                });
+            });
+
+            document.querySelectorAll(".dot").forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    const direction = index >= currentAvatarIndex ? 1 : -1;
+                    goToAvatar(index, direction);
+                });
+                dot.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        const direction = index >= currentAvatarIndex ? 1 : -1;
+                        goToAvatar(index, direction);
+                    }
                 });
             });
         }
 
-        // === 5. 时钟 & 随机金句 & 页面加载 ===
-        function updateClock() {
-            const d = new Date();
-            document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        function setupCopyHandlers() {
+            document.querySelectorAll("[data-copy]").forEach((button) => {
+                button.addEventListener("click", () => copyToClipboard(button.dataset.copy));
+            });
         }
 
-        window.onload = function() {
-            // 初始化头像切换功能
-            setupDotClickHandlers();
-            
-            updateClock();
-            setInterval(updateClock, 1000);
-
-            const quotes = [
-                "慎重如始，则无败事。",
-                "都是时代里的麦杆，风一吹过就倒伏在地上。",
-                "回朕车以复路兮，及行迷之未远。",
-                "安得广厦千万间，大庇天下寒士俱欢颜。",
-                "悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。",
+        function setRotatingSlogan() {
+            const sloganKey = "site-slogan-index";
+            const slogans = [
+                "\u614e\u7ec8\u5982\u59cb\uff0c\u5219\u65e0\u8d25\u4e8b\u3002",
+                "\u5b89\u5f97\u5e7f\u53a6\u5343\u4e07\u95f4\uff0c\u5927\u5e87\u5929\u4e0b\u5bd2\u58eb\u4ff1\u6b22\u989c\u3002",
+                "\u609f\u5df2\u5f80\u4e4b\u4e0d\u8c0f\uff0c\u77e5\u6765\u8005\u4e4b\u53ef\u8ffd\u3002\u5b9e\u8ff7\u9014\u5176\u672a\u8fdc\uff0c\u89c9\u4eca\u662f\u800c\u6628\u975e\u3002",
+                "\u56de\u6715\u8f66\u4ee5\u590d\u8def\u516e\uff0c\u53ca\u884c\u8ff7\u4e4b\u672a\u8fdc\u3002",
                 "Carpe diem, quam minimum credula postero."
             ];
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            document.getElementById('status-text').innerText = quotes[randomIndex];
-        };
+
+            const parsed = Number(localStorage.getItem(sloganKey));
+            const index = Number.isInteger(parsed) && parsed >= 0 ? parsed % slogans.length : 0;
+            const nextIndex = (index + 1) % slogans.length;
+            const slogan = slogans[index];
+
+            const topSlogan = document.getElementById("top-slogan");
+            if (topSlogan) {
+                topSlogan.innerText = slogan;
+            }
+            localStorage.setItem(sloganKey, String(nextIndex));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setupCopyHandlers();
+            setupAvatarHandlers();
+            setRotatingSlogan();
+        });
     </script>
 </body>
 </html>

@@ -32,44 +32,8 @@
     <div class="page-shell">
         <aside class="sidebar" id="sidebar-panel">
             <section class="panel profile-panel">
-                <div class="avatar-carousel" aria-label="Avatar carousel">
-                    <button type="button" class="carousel-arrow carousel-arrow-prev" data-direction="-1" aria-label="Previous avatar">◀</button>
-
-                    <div class="avatar-container" id="avatar-container" aria-live="polite">
-                        <img src="assets/avatar/avatar (1).jpg" alt="Avatar 1" class="avatar-image active" data-index="0" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (2).jpg" alt="Avatar 2" class="avatar-image" data-index="1" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (3).jpg" alt="Avatar 3" class="avatar-image" data-index="2" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (4).jpg" alt="Avatar 4" class="avatar-image" data-index="3" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (5).jpg" alt="Avatar 5" class="avatar-image" data-index="4" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (6).jpg" alt="Avatar 6" class="avatar-image" data-index="5" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (7).jpg" alt="Avatar 7" class="avatar-image" data-index="6" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (8).jpg" alt="Avatar 8" class="avatar-image" data-index="7" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (9).jpg" alt="Avatar 9" class="avatar-image" data-index="8" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (10).jpg" alt="Avatar 10" class="avatar-image" data-index="9" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (11).jpg" alt="Avatar 11" class="avatar-image" data-index="10" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (12).jpg" alt="Avatar 12" class="avatar-image" data-index="11" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (13).jpg" alt="Avatar 13" class="avatar-image" data-index="12" tabindex="0" role="button" aria-label="Next avatar">
-                        <img src="assets/avatar/avatar (14).jpg" alt="Avatar 14" class="avatar-image" data-index="13" tabindex="0" role="button" aria-label="Next avatar">
-                    </div>
-
-                    <button type="button" class="carousel-arrow carousel-arrow-next" data-direction="1" aria-label="Next avatar">▶</button>
-                </div>
-
-                <div class="carousel-dots" aria-label="Avatar navigation">
-                    <button type="button" class="dot active" data-index="0" aria-label="Go to avatar 1"></button>
-                    <button type="button" class="dot" data-index="1" aria-label="Go to avatar 2"></button>
-                    <button type="button" class="dot" data-index="2" aria-label="Go to avatar 3"></button>
-                    <button type="button" class="dot" data-index="3" aria-label="Go to avatar 4"></button>
-                    <button type="button" class="dot" data-index="4" aria-label="Go to avatar 5"></button>
-                    <button type="button" class="dot" data-index="5" aria-label="Go to avatar 6"></button>
-                    <button type="button" class="dot" data-index="6" aria-label="Go to avatar 7"></button>
-                    <button type="button" class="dot" data-index="7" aria-label="Go to avatar 8"></button>
-                    <button type="button" class="dot" data-index="8" aria-label="Go to avatar 9"></button>
-                    <button type="button" class="dot" data-index="9" aria-label="Go to avatar 10"></button>
-                    <button type="button" class="dot" data-index="10" aria-label="Go to avatar 11"></button>
-                    <button type="button" class="dot" data-index="11" aria-label="Go to avatar 12"></button>
-                    <button type="button" class="dot" data-index="12" aria-label="Go to avatar 13"></button>
-                    <button type="button" class="dot" data-index="13" aria-label="Go to avatar 14"></button>
+                <div class="avatar-container">
+                    <img src="assets/avatar/avatar (1).jpg" alt="Mengjia Zhang" class="avatar-image">
                 </div>
 
                 <h1 class="profile-name">Mengjia Zhang <span class="profile-name-cn">(张梦佳)</span></h1>
@@ -213,8 +177,6 @@
     <div id="toast" role="status" aria-live="polite">Copied to clipboard!</div>
 
     <script>
-        let currentAvatarIndex = 0;
-
         function showToast(message) {
             const toast = document.getElementById("toast");
             toast.innerText = message;
@@ -230,67 +192,6 @@
             } catch (_) {
                 showToast("Copy failed. Please copy manually.");
             }
-        }
-
-        function goToAvatar(nextIndex, directionHint = 1) {
-            const avatars = document.querySelectorAll(".avatar-image");
-            const dots = document.querySelectorAll(".dot");
-            if (avatars.length <= 1 || nextIndex === currentAvatarIndex) return;
-
-            const currentAvatar = avatars[currentAvatarIndex];
-            currentAvatar.classList.remove("exit-left", "exit-right");
-            currentAvatar.classList.add(directionHint > 0 ? "exit-right" : "exit-left");
-            currentAvatar.classList.remove("active");
-            dots[currentAvatarIndex].classList.remove("active");
-
-            currentAvatarIndex = nextIndex;
-
-            const nextAvatar = avatars[currentAvatarIndex];
-            setTimeout(() => {
-                nextAvatar.classList.add("active");
-                nextAvatar.classList.remove("exit-left", "exit-right");
-                dots[currentAvatarIndex].classList.add("active");
-            }, 40);
-        }
-
-        function changeAvatar(direction) {
-            const avatars = document.querySelectorAll(".avatar-image");
-            if (avatars.length <= 1) return;
-
-            let nextIndex = currentAvatarIndex + direction;
-            if (nextIndex >= avatars.length) nextIndex = 0;
-            if (nextIndex < 0) nextIndex = avatars.length - 1;
-            goToAvatar(nextIndex, direction);
-        }
-
-        function setupAvatarHandlers() {
-            document.querySelectorAll(".carousel-arrow").forEach((button) => {
-                button.addEventListener("click", () => changeAvatar(Number(button.dataset.direction)));
-            });
-
-            document.querySelectorAll(".avatar-image").forEach((image) => {
-                image.addEventListener("click", () => changeAvatar(1));
-                image.addEventListener("keydown", (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        changeAvatar(1);
-                    }
-                });
-            });
-
-            document.querySelectorAll(".dot").forEach((dot, index) => {
-                dot.addEventListener("click", () => {
-                    const direction = index >= currentAvatarIndex ? 1 : -1;
-                    goToAvatar(index, direction);
-                });
-                dot.addEventListener("keydown", (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        const direction = index >= currentAvatarIndex ? 1 : -1;
-                        goToAvatar(index, direction);
-                    }
-                });
-            });
         }
 
         function setupCopyHandlers() {
@@ -323,7 +224,6 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             setupCopyHandlers();
-            setupAvatarHandlers();
             setRotatingSlogan();
         });
     </script>

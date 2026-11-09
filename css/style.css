@@ -127,10 +127,7 @@ body {
 }
 
 .top-nav-link:focus-visible,
-.copy-btn:focus-visible,
-.carousel-arrow:focus-visible,
-.dot:focus-visible,
-.avatar-image:focus-visible {
+.copy-btn:focus-visible {
     outline: 2px solid #8b6b3a;
     outline-offset: 2px;
 }
@@ -217,92 +214,20 @@ button {
     padding: 12px 12px 10px;
 }
 
-.avatar-carousel {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
 .avatar-container {
-    position: relative;
     width: clamp(150px, 16.8vh, 190px);
     height: clamp(210px, 23.8vh, 266px);
+    margin: 0 auto;
 }
 
 .avatar-image {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border: 1px solid #cfba96;
     border-radius: 14px;
     box-shadow: 0 14px 26px rgba(22, 35, 53, 0.24);
-    opacity: 0;
-    transform: rotateY(0deg) rotateZ(0deg) scale(1);
-    transition: all 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    backface-visibility: hidden;
-    cursor: pointer;
-}
-
-.avatar-image.active {
-    position: relative;
-    opacity: 1;
-    z-index: 5;
-}
-
-.avatar-image.exit-left {
-    transform: rotateY(-90deg) rotateZ(-8deg) translateX(-64px) translateY(16px) scale(0.93);
-    opacity: 0;
-}
-
-.avatar-image.exit-right {
-    transform: rotateY(90deg) rotateZ(8deg) translateX(64px) translateY(16px) scale(0.93);
-    opacity: 0;
-}
-
-.carousel-arrow {
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    border: 1px solid #be9a62;
-    color: #65451f;
-    background: linear-gradient(180deg, #f8efdf, #ecd7b8);
-    box-shadow: 0 5px 12px rgba(70, 47, 19, 0.18);
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.carousel-arrow:hover {
-    transform: translateY(-1px);
-    background: linear-gradient(180deg, #fbf3e4, #efdcbf);
-}
-
-.carousel-dots {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 8px;
-}
-
-.dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: 1px solid #b09061;
-    background: #e0d1b7;
-    padding: 0;
-    cursor: pointer;
-    transition: 0.2s ease;
-}
-
-.dot.active {
-    background: #845b2e;
-    border-color: #845b2e;
-    transform: scale(1.2);
 }
 
 .profile-name {
@@ -660,11 +585,6 @@ h2 {
         min-height: 32px;
         padding: 4px 10px;
     }
-
-    .carousel-arrow {
-        min-width: 36px;
-        min-height: 36px;
-    }
 }
 
 @media (forced-colors: active) {
@@ -679,7 +599,6 @@ h2 {
 
     .top-nav-link,
     .copy-btn,
-    .carousel-arrow,
     .pdf-link {
         border: 1px solid ButtonText;
     }

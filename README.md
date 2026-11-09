@@ -15,7 +15,7 @@ A static academic profile website built with HTML, CSS, and vanilla JavaScript.
 
 - `index.html`: page structure and interactive script
 - `css/style.css`: all styling and responsive behavior
-- `assets/avatar/`: profile photos; the page displays `avatar (1).jpg`
+- `assets/avatar/`: profile photos; the page displays the graduation photo `avatar (2).jpg`
 - `assets/docs/CV_MengjiaZhang.pdf`: CV file
 - `assets/icon/icon.png`: site icon
 
